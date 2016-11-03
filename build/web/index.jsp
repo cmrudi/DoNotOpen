@@ -3,7 +3,7 @@
     Created on : Nov 2, 2016, 6:55:44 PM
     Author     : cmrudi
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -16,7 +16,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="style.css" />
-		<script type="text/javascript" src="Login/login.js"></script>
+		<script type="text/javascript" src="validate.js"></script>
 		
 	</head>
 	<body>
@@ -25,7 +25,10 @@
 		<h1>Sale<span>Project</span></h1>
 		<br>
 		<h3>Please Login</h3>
-		<form name="loginForm" action = "IdentityService"  method = "POST">
+                <c:if test="${not empty message}">
+                    <p>${message}</p>
+                </c:if>
+		<form name="loginForm" action = "IdentityService" onsubmit="return validateLoginForm()"  method = "POST">
 			Username or email <br>
 			<input type = "text" name = "usernameOrEmail">
 			<p class="warning" id="usernameOrEmailAlert"></p><br>

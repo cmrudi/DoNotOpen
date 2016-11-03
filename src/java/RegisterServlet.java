@@ -4,21 +4,25 @@
  * and open the template in the editor.
  */
 
+
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;  
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.sql.*;
 
 /**
  *
  * @author cmrudi
  */
-public class IdentityService extends HttpServlet {
-    static final String EMAIL_REGEX = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+public class RegisterServlet extends HttpServlet {
     //JDBC driver name and database URL
     static final String JDBC_DRIVER="com.mysql.jdbc.Driver";  
     static final String DB_URL="jdbc:mysql://localhost:3306/tubes_wbd?zeroDateTimeBehavior=convertToNull";
@@ -36,54 +40,86 @@ public class IdentityService extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException { 
-        response.setContentType("text/html;charset=UTF-8");
-        String usernameOrEmail;
+            throws ServletException, IOException {
+        String fullname;
+        String username;
+        String email;
         String password;
-        String output = "";
+        String fulladdress;
+        String postalcode;
+        String phonenumber;
+        String message = "";
+        String sql;
         
-        usernameOrEmail = request.getParameter("usernameOrEmail");
-        password = request.getParameter("password"); 
+        
+        fullname = request.getParameter("fullname");
+        username = request.getParameter("username");
+        email = request.getParameter("email");
+        password = request.getParameter("password");
+        fulladdress = request.getParameter("fulladdress");
+        postalcode = request.getParameter("postalcode");
+        phonenumber = request.getParameter("phonenumber");
         
         try{
             
             // Register JDBC driver
             Class.forName("com.mysql.jdbc.Driver");
             
+            
             // Open a connection
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
             
-            // Execute SQL query
-            Statement stmt = conn.createStatement();
-            String sql;
-            if (usernameOrEmail.matches(EMAIL_REGEX)) {
-                sql = "SELECT password FROM user_authentication WHERE email= ?";
+            Statement stmt1 = conn.createStatement();
+            sql = "SELECT username FROM user_authentication WHERE username = ?";
+            PreparedStatement pres = conn.prepareStatement(sql);
+            pres.setString(1,username);
+            ResultSet rs = pres.executeQuery();
+            if (!rs.next()) {
+                Statement stmt2 = conn.createStatement();
+                sql = "SELECT email FROM user_authentication WHERE email = ?";
+                PreparedStatement pres2 = conn.prepareStatement(sql);
+                pres2.setString(1,email);
+                ResultSet rs2 = pres2.executeQuery();
+                if (!rs2.next()) {
+                    // Execute SQL query
+                    Statement stmt3 = conn.createStatement();
+                    sql = "INSERT INTO user_data (username,full_name,email,full_address,postal_code,phone_number) VALUES (?,?,?,?,?,?)";        
+                    PreparedStatement pre = conn.prepareStatement(sql);
+                    pre.setString(1,username);
+                    pre.setString(2,fullname);
+                    pre.setString(3,email);
+                    pre.setString(4,fulladdress);
+                    pre.setString(5,postalcode);
+                    pre.setString(6,phonenumber);
+                    pre.executeUpdate();
+
+                    message = "Registration Succeed";
+                    request.setAttribute("message", message);
+                    request.getRequestDispatcher("/index.jsp").forward(request, response);
+                    stmt3.close();
+                }
+                else {
+                    message = "Email already in used";
+                    request.setAttribute("message", message);
+                    request.getRequestDispatcher("/register.jsp").forward(request, response);
+                }
+                stmt2.close();
             }
             else {
-                sql = "SELECT password FROM user_authentication WHERE username= ?";
-            }
-            
-            PreparedStatement pre = conn.prepareStatement(sql);
-            pre.setString(1,usernameOrEmail);
-            ResultSet rs = pre.executeQuery();
-            String pass = "";
-            if (rs.next()) {            
-                pass = rs.getString("password");
-            }
-            
-            
-            if (pass.equals(password)) {
-                output = "login successfully";
-            }
-            else {
-                String message = "Username or password incorrect";
+                message = "Username already in used";
                 request.setAttribute("message", message);
-                request.getRequestDispatcher("/index.jsp").forward(request, response);
-            }  
+                request.getRequestDispatcher("/register.jsp").forward(request, response);
+            }
+            stmt1.close();
+            
+            
+            
+   
             
             // Clean-up environment
-            rs.close();
-            stmt.close();
+            
+            
+            
             conn.close();
         }catch(SQLException se){
             //Handle errors for JDBC
@@ -95,8 +131,7 @@ public class IdentityService extends HttpServlet {
           
         } //end try
         
-        
-        try (PrintWriter out = response.getWriter()) {
+         try (PrintWriter out = response.getWriter()) {
             
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -105,12 +140,13 @@ public class IdentityService extends HttpServlet {
             out.println("<title>Servlet IdentityService</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>usernameOrEmail " +usernameOrEmail +"</h1>");
+            out.println("<h1>usernameOrEmail " +fullname +"</h1>");
             out.println("<h1>password " +password +"</h1>");
-            out.println("<h1>output :" + output +"</h1>");
+            out.println("<h1>output :" + message +"</h1>");
             out.println("</body>");
             out.println("</html>");
         }
+       
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -151,5 +187,5 @@ public class IdentityService extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-    
+
 }
