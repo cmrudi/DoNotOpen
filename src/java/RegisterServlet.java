@@ -93,9 +93,9 @@ public class RegisterServlet extends HttpServlet {
                     pre.setString(6,phonenumber);
                     pre.executeUpdate();
 
-                    message = "Registration Succeed";
+                    message = "Successfull";
                     request.setAttribute("message", message);
-                    request.getRequestDispatcher("/index.jsp").forward(request, response);
+                    request.getRequestDispatcher("/catalog.jsp").forward(request, response);
                     stmt3.close();
                 }
                 else {

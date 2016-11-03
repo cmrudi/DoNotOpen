@@ -71,12 +71,14 @@ public class IdentityService extends HttpServlet {
                 pass = rs.getString("password");
             }
             
-            
+            String message;
             if (pass.equals(password)) {
-                output = "login successfully";
+                message = "Successfull";
+                request.setAttribute("message", message);
+                request.getRequestDispatcher("/catalog.jsp").forward(request, response);
             }
             else {
-                String message = "Username or password incorrect";
+                message = "Username or password incorrect";
                 request.setAttribute("message", message);
                 request.getRequestDispatcher("/index.jsp").forward(request, response);
             }  
@@ -96,21 +98,6 @@ public class IdentityService extends HttpServlet {
         } //end try
         
         
-        try (PrintWriter out = response.getWriter()) {
-            
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet IdentityService</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>usernameOrEmail " +usernameOrEmail +"</h1>");
-            out.println("<h1>password " +password +"</h1>");
-            out.println("<h1>output :" + output +"</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
