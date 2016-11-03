@@ -4,6 +4,10 @@
         <servlet-name>IdentityService</servlet-name>
         <servlet-class>IdentityService</servlet-class>
     </servlet>
+     <servlet>
+        <servlet-name>DatabaseAccess</servlet-name>
+        <servlet-class>DatabaseAccess</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>IdentityService</servlet-name>
         <url-pattern>/IdentityService</url-pattern>

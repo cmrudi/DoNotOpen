@@ -1,13 +1,16 @@
+<%-- 
+    Document   : index
+    Created on : Nov 2, 2016, 6:55:44 PM
+    Author     : cmrudi
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
 <html>
 	<head>
 		<title>JuraganDiskon</title>
-                <meta charset="UTF-8">
+                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -22,7 +25,7 @@ and open the template in the editor.
 		<h1>Sale<span>Project</span></h1>
 		<br>
 		<h3>Please Login</h3>
-		<form name="loginForm" enctype="multipart/form-data" action = "loginServlet" onsubmit="return validateLoginForm()" method = "POST">
+		<form name="loginForm" action = "IdentityService"  method = "POST">
 			Username or email <br>
 			<input type = "text" name = "usernameOrEmail">
 			<p class="warning" id="usernameOrEmailAlert"></p><br>

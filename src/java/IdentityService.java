@@ -11,13 +11,21 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.sql.*;
 
 /**
  *
  * @author cmrudi
  */
 public class IdentityService extends HttpServlet {
+    static final String EMAIL_REGEX = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+    //JDBC driver name and database URL
+    static final String JDBC_DRIVER="com.mysql.jdbc.Driver";  
+    static final String DB_URL="jdbc:mysql://localhost:3306/tubes_wbd?zeroDateTimeBehavior=convertToNull";
 
+    //  Database credentials
+    static final String USER = "cmrudi";
+    static final String PASS = "takengon"; 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -28,9 +36,66 @@ public class IdentityService extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException { 
         response.setContentType("text/html;charset=UTF-8");
+        String usernameOrEmail;
+        String password;
+        String output = "";
+        
+        usernameOrEmail = request.getParameter("usernameOrEmail");
+        password = request.getParameter("password"); 
+        
+        try{
+            
+            // Register JDBC driver
+            Class.forName("com.mysql.jdbc.Driver");
+            
+            // Open a connection
+            Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            
+            // Execute SQL query
+            Statement stmt = conn.createStatement();
+            String sql;
+            if (usernameOrEmail.matches(EMAIL_REGEX)) {
+                sql = "SELECT password FROM user_authentication WHERE email= ?";
+            }
+            else {
+                sql = "SELECT password FROM user_authentication WHERE username= ?";
+            }
+            
+            PreparedStatement pre = conn.prepareStatement(sql);
+            pre.setString(1,usernameOrEmail);
+            ResultSet rs = pre.executeQuery();
+            String pass = "";
+            if (rs.next()) {            
+                pass = rs.getString("password");
+            }
+            
+            
+            if (pass.equals(password)) {
+                output = "login successfully";
+            }
+            else {
+                output = "login failed";
+            }  
+            
+            // Clean-up environment
+            rs.close();
+            stmt.close();
+            conn.close();
+        }catch(SQLException se){
+            //Handle errors for JDBC
+            se.printStackTrace();
+        }catch(Exception e){
+            //Handle errors for Class.forName
+            e.printStackTrace();
+        }finally{
+          
+        } //end try
+        
+        
         try (PrintWriter out = response.getWriter()) {
+            
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -38,7 +103,9 @@ public class IdentityService extends HttpServlet {
             out.println("<title>Servlet IdentityService</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet IdentityService at " + request.getContextPath() + "</h1>");
+            out.println("<h1>usernameOrEmail " +usernameOrEmail +"</h1>");
+            out.println("<h1>password " +password +"</h1>");
+            out.println("<h1>output :" + output +"</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -82,5 +149,5 @@ public class IdentityService extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
+    
 }
