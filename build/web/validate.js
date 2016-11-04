@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 function validateRegisterForm() {
 	var fullNameAlert,usernameAlert,emailAlert,passwordAlert,confirmAlert,fullAddressAlert,postalCodeAlert,phoneNumberAlert;
 	var fullName = document.forms["registerForm"]["fullname"].value;

@@ -20,9 +20,9 @@
 	<br>
         <div id="centeredmenu" class="mati">
             <ul>
-            <li><a class="mati" href="#">Catalog</a></li>
-            <li><a class="mati" href="#">Your Product</a></li>
-            <li><a class="mati" href="#">Add Product</a></li>
+            <li><a class="mati" href="/JuraganDiskon/catalog.jsp">Catalog</a></li>
+            <li><a class="mati" href="/JuraganDiskon/yourProduct.jsp">Your Product</a></li>
+            <li><a class="mati" href="/JuraganDiskon/addProduct.jsp">Add Product</a></li>
             <li><a class="mati" href="#">Sales</a></li>
             <li><a class="mati" href="#">Purchase</a></li>
             </ul>
