@@ -20,7 +20,6 @@ import javax.jws.WebService;
  * @author fazarafi
  */
 @WebService(serviceName = "YourProduct")
-
 public class YourProduct {
     static final int YOURPRODUCT_LENGTH = 100;
     static final String NULL_STRING = "*";
@@ -46,10 +45,9 @@ public class YourProduct {
             // Execute SQL query
             Statement stmt = conn.createStatement();
             String sql;
-            sql = "SELECT product.product_id, product.username, product.product_name, product.price, product.description, product.total_likes, product.total_purchased, product.image_address, product.timestamp FROM product WHERE deleted = 0 user_id = ?";
+            sql = "SELECT product.product_id, product.username, product.product_name, product.price, product.description, product.total_likes, product.total_purchased, product.image_address, product.timestamp FROM product, user_authentication as ua WHERE deleted = 0 AND product.username = ua.username AND ua.id = ?";
             PreparedStatement pre = conn.prepareStatement(sql);
             pre.setInt(1,user_id);
-            pre.setInt(2,user_id);
             ResultSet rs = pre.executeQuery();
             rs.last();
             result.add(String.valueOf(rs.getRow()));
