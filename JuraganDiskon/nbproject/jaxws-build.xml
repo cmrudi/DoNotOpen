@@ -42,5 +42,21 @@
         <delete dir="${build.generated.sources.dir}/jax-ws/com/me/juragandiskon"/>
         <delete dir="${build.generated.dir}/jax-wsCache/Catalog"/>
     </target>
-    <target name="wsimport-client-generate" depends="wsimport-client-Catalog"/>
+    <target name="wsimport-client-YourProduct" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/YourProduct"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/YourProduct" destdir="${build.generated.dir}/jax-wsCache/YourProduct" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/YourProduct/wsdl/localhost_8080/MarketplaceWebService/YourProduct.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/MarketplaceWebService/YourProduct?wsdl" xnocompile="true" xendorsed="true">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/YourProduct/wsdl/localhost_8080/MarketplaceWebService/YourProduct.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/YourProduct"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/YourProduct">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-YourProduct" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/com/me/juragandiskon"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/YourProduct"/>
+    </target>
+    <target name="wsimport-client-generate" depends="wsimport-client-Catalog, wsimport-client-YourProduct"/>
 </project>

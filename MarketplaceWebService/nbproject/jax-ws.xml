@@ -7,6 +7,9 @@
     <service name="YourProduct">
       <implementation-class>com.me.juragandiskon.YourProduct</implementation-class>
     </service>
+    <service name="ConfirmationPurchase">
+      <implementation-class>com.me.juragandiskon.ConfirmationPurchase</implementation-class>
+    </service>
   </services>
   <clients/>
 </jax-ws>
