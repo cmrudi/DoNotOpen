@@ -23,4 +23,13 @@ public class ConfirmationPurchase {
     public String hello(@WebParam(name = "name") String txt) {
         return "Hello " + txt + " !";
     }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "getTotalPrice")
+    public String getTotalPrice(@WebParam(name = "qty") int qty) {
+        //TODO write your implementation code here:
+        return null;
+    }
 }
