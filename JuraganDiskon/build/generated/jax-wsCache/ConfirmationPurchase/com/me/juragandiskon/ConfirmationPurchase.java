@@ -27,6 +27,21 @@ public interface ConfirmationPurchase {
 
     /**
      * 
+     * @param qty
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getTotalPrice", targetNamespace = "http://juragandiskon.me.com/", className = "com.me.juragandiskon.GetTotalPrice")
+    @ResponseWrapper(localName = "getTotalPriceResponse", targetNamespace = "http://juragandiskon.me.com/", className = "com.me.juragandiskon.GetTotalPriceResponse")
+    @Action(input = "http://juragandiskon.me.com/ConfirmationPurchase/getTotalPriceRequest", output = "http://juragandiskon.me.com/ConfirmationPurchase/getTotalPriceResponse")
+    public String getTotalPrice(
+        @WebParam(name = "qty", targetNamespace = "")
+        int qty);
+
+    /**
+     * 
      * @param prodId
      * @param userId
      * @return
@@ -42,20 +57,5 @@ public interface ConfirmationPurchase {
         int userId,
         @WebParam(name = "prod_id", targetNamespace = "")
         int prodId);
-
-    /**
-     * 
-     * @param qty
-     * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getTotalPrice", targetNamespace = "http://juragandiskon.me.com/", className = "com.me.juragandiskon.GetTotalPrice")
-    @ResponseWrapper(localName = "getTotalPriceResponse", targetNamespace = "http://juragandiskon.me.com/", className = "com.me.juragandiskon.GetTotalPriceResponse")
-    @Action(input = "http://juragandiskon.me.com/ConfirmationPurchase/getTotalPriceRequest", output = "http://juragandiskon.me.com/ConfirmationPurchase/getTotalPriceResponse")
-    public String getTotalPrice(
-        @WebParam(name = "qty", targetNamespace = "")
-        int qty);
 
 }

@@ -27,6 +27,21 @@ public interface YourProduct {
 
     /**
      * 
+     * @param id
+     * @return
+     *     returns java.util.List<java.lang.String>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getProducts", targetNamespace = "http://juragandiskon.me.com/", className = "com.me.juragandiskon.GetProducts")
+    @ResponseWrapper(localName = "getProductsResponse", targetNamespace = "http://juragandiskon.me.com/", className = "com.me.juragandiskon.GetProductsResponse")
+    @Action(input = "http://juragandiskon.me.com/YourProduct/getProductsRequest", output = "http://juragandiskon.me.com/YourProduct/getProductsResponse")
+    public List<String> getProducts(
+        @WebParam(name = "id", targetNamespace = "")
+        int id);
+
+    /**
+     * 
      * @param productId
      * @param id
      * @return
@@ -54,20 +69,5 @@ public interface YourProduct {
     @ResponseWrapper(localName = "deleteProductResponse", targetNamespace = "http://juragandiskon.me.com/", className = "com.me.juragandiskon.DeleteProductResponse")
     @Action(input = "http://juragandiskon.me.com/YourProduct/deleteProductRequest", output = "http://juragandiskon.me.com/YourProduct/deleteProductResponse")
     public String deleteProduct();
-
-    /**
-     * 
-     * @param id
-     * @return
-     *     returns java.util.List<java.lang.String>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getProducts", targetNamespace = "http://juragandiskon.me.com/", className = "com.me.juragandiskon.GetProducts")
-    @ResponseWrapper(localName = "getProductsResponse", targetNamespace = "http://juragandiskon.me.com/", className = "com.me.juragandiskon.GetProductsResponse")
-    @Action(input = "http://juragandiskon.me.com/YourProduct/getProductsRequest", output = "http://juragandiskon.me.com/YourProduct/getProductsResponse")
-    public List<String> getProducts(
-        @WebParam(name = "id", targetNamespace = "")
-        int id);
 
 }

@@ -39,7 +39,7 @@
         <h2>Please add your product here</h2>
         <hr><br><br>
 
-        <form name="addProductForm" enctype="multipart/form-data" action="" onsubmit="return validateAddProductForm()" method="POST">
+        <form name="addProductForm" enctype="multipart/form-data" action="UploadImage" onsubmit="return validateAddProductForm()" method="POST">
                 Product name <br>
                 <input type = "text" name = "productName">
                 <p class="warning" id="productNameAlert"></p><br>
@@ -49,7 +49,7 @@
                 Price (IDR) <br>
                 <input type = "text" name = "productPrice">
                 <p class="warning" id="productPriceAlert"></p><br>
-                <input type="file" name="userfile" id="file">
+                <input type="file" name="file" id="file">
                 <p class="warning" id="productImageAlert"></p><br>
                 <input class="button-right-group" type="button" id="cancelAddProductButtons" value="CANCEL" onclick="cancelAddProduct()">
                 <input class="button-right-group" type="submit" name="submit" value="ADD">

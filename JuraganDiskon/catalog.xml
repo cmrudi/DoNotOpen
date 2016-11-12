@@ -14,14 +14,15 @@
     <system systemId="http://localhost:8080/MarketplaceWebService/ConfirmationPurchase?xsd=1" uri="src/conf/xml-resources/web-service-references/ConfirmationPurchase/wsdl/localhost_8080/MarketplaceWebService/ConfirmationPurchase.xsd_1.xsd"/>
 >>>>>>> 3af9e1290f9a3a187ac83f143b4235912d654dcf
 
-    <system systemId="http://localhost:8080/MarketplaceWebService/Catalog?wsdl" uri="src/conf/xml-resources/web-service-references/Catalog/wsdl/localhost_8080/MarketplaceWebService/Catalog.wsdl"/>
-    <system systemId="http://localhost:8080/MarketplaceWebService/Catalog?xsd=1" uri="src/conf/xml-resources/web-service-references/Catalog/wsdl/localhost_8080/MarketplaceWebService/Catalog.xsd_1.xsd"/>
+    
 >>>>>>> db0a6577e2815fbd8f6c3c3af1f2ceeb6c0f4e6c
 
     <system systemId="http://localhost:8080/MarketplaceWebService/Catalog?wsdl" uri="src/conf/xml-resources/web-service-references/Catalog/wsdl/localhost_8080/MarketplaceWebService/Catalog.wsdl"/>
     <system systemId="http://localhost:8080/MarketplaceWebService/Catalog?xsd=1" uri="src/conf/xml-resources/web-service-references/Catalog/wsdl/localhost_8080/MarketplaceWebService/Catalog.xsd_1.xsd"/>
     <system systemId="http://localhost:8080/MarketplaceWebService/EditProduct?wsdl" uri="src/conf/xml-resources/web-service-references/EditProduct/wsdl/localhost_8080/MarketplaceWebService/EditProduct.wsdl"/>
     <system systemId="http://localhost:8080/MarketplaceWebService/EditProduct?xsd=1" uri="src/conf/xml-resources/web-service-references/EditProduct/wsdl/localhost_8080/MarketplaceWebService/EditProduct.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/MarketplaceWebService/Catalog?wsdl" uri="src/conf/xml-resources/web-service-references/Catalog/wsdl/localhost_8080/MarketplaceWebService/Catalog.wsdl"/>
+    <system systemId="http://localhost:8080/MarketplaceWebService/Catalog?xsd=1" uri="src/conf/xml-resources/web-service-references/Catalog/wsdl/localhost_8080/MarketplaceWebService/Catalog.xsd_1.xsd"/>
     <system systemId="http://localhost:8081/MarketplaceWebService/Catalog?wsdl" uri="src/conf/xml-resources/web-service-references/Catalog/wsdl/localhost_8081/MarketplaceWebService/Catalog.wsdl"/>
     <system systemId="http://localhost:8081/MarketplaceWebService/Catalog?xsd=1" uri="src/conf/xml-resources/web-service-references/Catalog/wsdl/localhost_8081/MarketplaceWebService/Catalog.xsd_1.xsd"/>
     <system systemId="http://localhost:8081/MarketplaceWebService/YourProduct?wsdl" uri="src/conf/xml-resources/web-service-references/YourProduct/wsdl/localhost_8081/MarketplaceWebService/YourProduct.wsdl"/>
