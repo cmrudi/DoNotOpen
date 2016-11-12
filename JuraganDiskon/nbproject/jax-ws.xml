@@ -3,38 +3,6 @@
   <services>
   </services>
   <clients>
-    <client name="YourProduct">
-      <wsdl-url>http://localhost:8080/MarketplaceWebService/YourProduct?wsdl</wsdl-url>
-      <local-wsdl-file>localhost_8080/MarketplaceWebService/YourProduct.wsdl</local-wsdl-file>
-      <package-name>com.me.juragandiskon</package-name>
-      <catalog-file>catalog.xml</catalog-file>
-      <wsimport-options>
-        <wsimport-option>
-          <wsimport-option-name>extension</wsimport-option-name>
-          <wsimport-option-value>true</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>verbose</wsimport-option-name>
-          <wsimport-option-value>true</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>fork</wsimport-option-name>
-          <wsimport-option-value>false</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://localhost:8080/MarketplaceWebService/YourProduct?wsdl</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>xnocompile</wsimport-option-name>
-          <wsimport-option-value>true</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>xendorsed</wsimport-option-name>
-          <wsimport-option-value>true</wsimport-option-value>
-        </wsimport-option>
-      </wsimport-options>
-    </client>
     <client name="Catalog">
       <wsdl-url>http://localhost:8081/MarketplaceWebService/Catalog?wsdl</wsdl-url>
       <local-wsdl-file>localhost_8081/MarketplaceWebService/Catalog.wsdl</local-wsdl-file>
@@ -67,9 +35,9 @@
         </wsimport-option>
       </wsimport-options>
     </client>
-    <client name="EditProduct">
-      <wsdl-url>http://localhost:8080/MarketplaceWebService/EditProduct?wsdl</wsdl-url>
-      <local-wsdl-file>localhost_8080/MarketplaceWebService/EditProduct.wsdl</local-wsdl-file>
+    <client name="YourProduct">
+      <wsdl-url>http://localhost:8081/MarketplaceWebService/YourProduct?wsdl</wsdl-url>
+      <local-wsdl-file>localhost_8081/MarketplaceWebService/YourProduct.wsdl</local-wsdl-file>
       <package-name>com.me.juragandiskon</package-name>
       <catalog-file>catalog.xml</catalog-file>
       <wsimport-options>
@@ -87,10 +55,78 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://localhost:8080/MarketplaceWebService/EditProduct?wsdl</wsimport-option-value>
+          <wsimport-option-value>http://localhost:8081/MarketplaceWebService/YourProduct?wsdl</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xendorsed</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+      </wsimport-options>
+    </client>
+    <client name="ConfirmationPurchase">
+      <wsdl-url>http://localhost:8081/MarketplaceWebService/ConfirmationPurchase?wsdl</wsdl-url>
+      <local-wsdl-file>localhost_8081/MarketplaceWebService/ConfirmationPurchase.wsdl</local-wsdl-file>
+      <package-name>com.me.juragandiskon</package-name>
+      <catalog-file>catalog.xml</catalog-file>
+      <wsimport-options>
+        <wsimport-option>
+          <wsimport-option-name>extension</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>verbose</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>fork</wsimport-option-name>
+          <wsimport-option-value>false</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>wsdlLocation</wsimport-option-name>
+          <wsimport-option-value>http://localhost:8081/MarketplaceWebService/ConfirmationPurchase?wsdl</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xnocompile</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xendorsed</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+      </wsimport-options>
+    </client>
+    <client name="EditProduct">
+      <wsdl-url>http://localhost:8081/MarketplaceWebService/EditProduct?wsdl</wsdl-url>
+      <local-wsdl-file>localhost_8081/MarketplaceWebService/EditProduct.wsdl</local-wsdl-file>
+      <package-name>com.me.juragandiskon</package-name>
+      <catalog-file>catalog.xml</catalog-file>
+      <wsimport-options>
+        <wsimport-option>
+          <wsimport-option-name>extension</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>verbose</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>fork</wsimport-option-name>
+          <wsimport-option-value>false</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>wsdlLocation</wsimport-option-name>
+          <wsimport-option-value>http://localhost:8081/MarketplaceWebService/EditProduct?wsdl</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xnocompile</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xendorsed</wsimport-option-name>
           <wsimport-option-value>true</wsimport-option-value>
         </wsimport-option>
       </wsimport-options>
