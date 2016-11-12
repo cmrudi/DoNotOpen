@@ -24,8 +24,12 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _GetEditingProdInfo_QNAME = new QName("http://juragandiskon.me.com/", "getEditingProdInfo");
-    private final static QName _GetEditingProdInfoResponse_QNAME = new QName("http://juragandiskon.me.com/", "getEditingProdInfoResponse");
+    private final static QName _DeleteProduct_QNAME = new QName("http://juragandiskon.me.com/", "deleteProduct");
+    private final static QName _DeleteProductResponse_QNAME = new QName("http://juragandiskon.me.com/", "deleteProductResponse");
+    private final static QName _EditProduct_QNAME = new QName("http://juragandiskon.me.com/", "editProduct");
+    private final static QName _EditProductResponse_QNAME = new QName("http://juragandiskon.me.com/", "editProductResponse");
+    private final static QName _GetProducts_QNAME = new QName("http://juragandiskon.me.com/", "getProducts");
+    private final static QName _GetProductsResponse_QNAME = new QName("http://juragandiskon.me.com/", "getProductsResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.me.juragandiskon
@@ -35,37 +39,105 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetEditingProdInfo }
+     * Create an instance of {@link DeleteProduct }
      * 
      */
-    public GetEditingProdInfo createGetEditingProdInfo() {
-        return new GetEditingProdInfo();
+    public DeleteProduct createDeleteProduct() {
+        return new DeleteProduct();
     }
 
     /**
-     * Create an instance of {@link GetEditingProdInfoResponse }
+     * Create an instance of {@link DeleteProductResponse }
      * 
      */
-    public GetEditingProdInfoResponse createGetEditingProdInfoResponse() {
-        return new GetEditingProdInfoResponse();
+    public DeleteProductResponse createDeleteProductResponse() {
+        return new DeleteProductResponse();
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetEditingProdInfo }{@code >}}
+     * Create an instance of {@link EditProduct }
      * 
      */
-    @XmlElementDecl(namespace = "http://juragandiskon.me.com/", name = "getEditingProdInfo")
-    public JAXBElement<GetEditingProdInfo> createGetEditingProdInfo(GetEditingProdInfo value) {
-        return new JAXBElement<GetEditingProdInfo>(_GetEditingProdInfo_QNAME, GetEditingProdInfo.class, null, value);
+    public EditProduct createEditProduct() {
+        return new EditProduct();
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetEditingProdInfoResponse }{@code >}}
+     * Create an instance of {@link EditProductResponse }
      * 
      */
-    @XmlElementDecl(namespace = "http://juragandiskon.me.com/", name = "getEditingProdInfoResponse")
-    public JAXBElement<GetEditingProdInfoResponse> createGetEditingProdInfoResponse(GetEditingProdInfoResponse value) {
-        return new JAXBElement<GetEditingProdInfoResponse>(_GetEditingProdInfoResponse_QNAME, GetEditingProdInfoResponse.class, null, value);
+    public EditProductResponse createEditProductResponse() {
+        return new EditProductResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetProducts }
+     * 
+     */
+    public GetProducts createGetProducts() {
+        return new GetProducts();
+    }
+
+    /**
+     * Create an instance of {@link GetProductsResponse }
+     * 
+     */
+    public GetProductsResponse createGetProductsResponse() {
+        return new GetProductsResponse();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DeleteProduct }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://juragandiskon.me.com/", name = "deleteProduct")
+    public JAXBElement<DeleteProduct> createDeleteProduct(DeleteProduct value) {
+        return new JAXBElement<DeleteProduct>(_DeleteProduct_QNAME, DeleteProduct.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DeleteProductResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://juragandiskon.me.com/", name = "deleteProductResponse")
+    public JAXBElement<DeleteProductResponse> createDeleteProductResponse(DeleteProductResponse value) {
+        return new JAXBElement<DeleteProductResponse>(_DeleteProductResponse_QNAME, DeleteProductResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link EditProduct }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://juragandiskon.me.com/", name = "editProduct")
+    public JAXBElement<EditProduct> createEditProduct(EditProduct value) {
+        return new JAXBElement<EditProduct>(_EditProduct_QNAME, EditProduct.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link EditProductResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://juragandiskon.me.com/", name = "editProductResponse")
+    public JAXBElement<EditProductResponse> createEditProductResponse(EditProductResponse value) {
+        return new JAXBElement<EditProductResponse>(_EditProductResponse_QNAME, EditProductResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetProducts }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://juragandiskon.me.com/", name = "getProducts")
+    public JAXBElement<GetProducts> createGetProducts(GetProducts value) {
+        return new JAXBElement<GetProducts>(_GetProducts_QNAME, GetProducts.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetProductsResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://juragandiskon.me.com/", name = "getProductsResponse")
+    public JAXBElement<GetProductsResponse> createGetProductsResponse(GetProductsResponse value) {
+        return new JAXBElement<GetProductsResponse>(_GetProductsResponse_QNAME, GetProductsResponse.class, null, value);
     }
 
 }

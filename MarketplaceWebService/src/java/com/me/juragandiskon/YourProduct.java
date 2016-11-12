@@ -26,7 +26,7 @@ public class YourProduct {
     
     //JDBC driver name and database URL
     static final String JDBC_DRIVER="com.mysql.jdbc.Driver";  
-    static final String DB_URL="jdbc:mysql://localhost:3306/tubes_wbd?zeroDateTimeBehavior=convertToNull";
+    static final String DB_URL="jdbc:mysql://localhost:3306/tubes_wbd_MP?zeroDateTimeBehavior=convertToNull";
 
     //  Database credentials
     static final String USER = "cmrudi";
@@ -46,7 +46,8 @@ public class YourProduct {
             // Execute SQL query
             Statement stmt = conn.createStatement();
             String sql;
-            sql = "SELECT product.product_id, product.username, product.product_name, product.price, product.description, product.total_likes, product.total_purchased, product.image_address, product.timestamp FROM product, user_authentication as ua WHERE deleted = 0 AND product.username = ua.username AND ua.id = ?";
+            //sql = "SELECT product.product_id, product.username, product.product_name, product.price, product.description, product.total_likes, product.total_purchased, product.image_address, product.timestamp FROM product, user_authentication as ua WHERE deleted = 0 AND product.username = ua.username AND ua.id = ?";
+            sql = "SELECT * FROM product WHERE product_id = ?";
             PreparedStatement pre = conn.prepareStatement(sql);
             pre.setInt(1,user_id);
             ResultSet rs = pre.executeQuery();

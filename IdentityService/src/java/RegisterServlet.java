@@ -27,7 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 public class RegisterServlet extends HttpServlet {
     //JDBC driver name and database URL
     static final String JDBC_DRIVER="com.mysql.jdbc.Driver";  
-    static final String DB_URL="jdbc:mysql://localhost:3306/tubes_wbd?zeroDateTimeBehavior=convertToNull";
+    static final String DB_URL="jdbc:mysql://localhost:3306/tubes_wbd_IS?zeroDateTimeBehavior=convertToNull";
 
     //  Database credentials
     static final String USER = "cmrudi";

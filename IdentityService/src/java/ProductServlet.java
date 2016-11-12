@@ -21,11 +21,11 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author cmrudi
+ * @author fazarafi
  */
-@WebServlet(urlPatterns = {"/LoginServlet"})
-public class LoginServlet extends HttpServlet {
-    static final String EMAIL_REGEX = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+@WebServlet(urlPatterns = {"/ProductServlet"})
+public class ProductServlet extends HttpServlet {
+    
     //JDBC driver name and database URL
     static final String JDBC_DRIVER="com.mysql.jdbc.Driver";  
     static final String DB_URL="jdbc:mysql://localhost:3306/tubes_wbd_IS?zeroDateTimeBehavior=convertToNull";
@@ -45,16 +45,11 @@ public class LoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-           
-        String usernameOrEmail;
-        String password;
-        String output = "";
         
-        String messagess = "empty";
-        
-        usernameOrEmail = request.getParameter("usernameOrEmail");
-        password = request.getParameter("password"); 
-        
+        String username;
+        int userId;
+        String message = "empty";
+        userId = Integer.parseInt(request.getParameterValues("id").toString());
         try{
             
             // Register JDBC driver
@@ -62,27 +57,21 @@ public class LoginServlet extends HttpServlet {
             
             // Open a connection
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            messagess = "line65";
+            message = "line65";
             // Execute SQL query
             Statement stmt = conn.createStatement();
             String sql;
-            if (usernameOrEmail.matches(EMAIL_REGEX)) {
-                sql = "SELECT password FROM user_authentication WHERE email= ?";
-            }
-            else {
-                sql = "SELECT password FROM user_authentication WHERE username= ?";
-            }
-            messagess = "line76";
+            sql = "SELECT ud.username,ud.full_name,ud.email,ud.full_address,ud.postal_code,ud.phone_number FROM user_data ud, user_authentication ua where ua.username = ud.username AND ua.id = ?";
+            message = "line76";
             PreparedStatement pre = conn.prepareStatement(sql);
-            pre.setString(1,usernameOrEmail);
+            pre.setInt(1,userId);
             ResultSet rs = pre.executeQuery();
             String pass = "";
             if (rs.next()) {            
                 pass = rs.getString("password");
             }
             
-            String message;
-            if (pass.equals(password)) {
+            if (pass.equals(1)) {
                 message = "Successfull";
                 request.getSession().setAttribute("message", message);
                 response.sendRedirect("http://localhost:8080/JuraganDiskon/catalog.jsp"); 
@@ -108,6 +97,7 @@ public class LoginServlet extends HttpServlet {
         
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -115,12 +105,10 @@ public class LoginServlet extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet LoginServlet at " + request.getContextPath() + "</h1>");
-            out.println("<h1>Error Checking " + messagess + "</h1>");
+            out.println("<h1>Error Checking " + message + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
-        
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

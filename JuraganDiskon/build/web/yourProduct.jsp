@@ -3,6 +3,8 @@
     Created on : Nov 8, 2016, 8:33:28 PM
     Author     : fazarafi
 --%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%-- start web service invocation --%>
@@ -52,7 +54,6 @@
     %>
     <%-- end web service invocation --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -62,9 +63,9 @@
         <link rel="stylesheet" href="style.css" />
         <script type="text/javascript" src="validate.js"></script>
     </head>
-    
+    <body>
     <div class="lhs"></div>
-    
+    <div class="centre">
 	<h1>Juragan<span>Diskon</span></h1>
 	<br>
         <div id="centeredmenu" class="mati">
@@ -133,7 +134,7 @@
             <% }      
             %>
             
-    
+    </div>
     <div class="rhs"></div>
-    
+</body>
 </html>
