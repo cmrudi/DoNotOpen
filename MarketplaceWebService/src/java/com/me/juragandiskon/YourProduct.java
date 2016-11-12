@@ -33,7 +33,8 @@ public class YourProduct {
     static final String PASS = "takengon";
     
     public ArrayList<String> getProducts(@WebParam(name = "id") int user_id) {
-        ArrayList<String> result = new ArrayList<String>();
+        ArrayList<String> result;
+        result = new ArrayList();
         try{
             
             // Register JDBC driver

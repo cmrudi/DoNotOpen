@@ -9,6 +9,9 @@
     <%
     String[][] products = new String[100][9];
     int productNum = 0;
+    String pageUri = request.getRequestURI();
+    pageUri = pageUri.substring(0, 15);
+    
     
     try {
 	com.me.juragandiskon.YourProduct_Service service = new com.me.juragandiskon.YourProduct_Service();
@@ -59,9 +62,9 @@
         <link rel="stylesheet" href="style.css" />
         <script type="text/javascript" src="validate.js"></script>
     </head>
-    <body>
+    
     <div class="lhs"></div>
-    <div class="centre">
+    
 	<h1>Juragan<span>Diskon</span></h1>
 	<br>
         <div id="centeredmenu" class="mati">
@@ -111,7 +114,7 @@
                 <div class="right-container">
                     <br><p id="totalLikes"><% out.println(products[i][5]); %> likes</p>
                     <p><% out.println(products[i][6]); %> purchases<br></p>
-                        <a type="button" id="editButton" href = "/JuraganDiskon/editProduct.jsp"?>EDIT</a>
+                        <a type="button" id="editButton" href = "<% out.print(pageUri+"editProduct.jsp?"+"prod_id="+products[i][0]); %>"?>EDIT</a>
                         <button type="button" id="deleteButton" name="deletingProduct" value="<% out.print(products[i][0]); %>">DELETE</button>
                 </div>
             </div>
@@ -127,9 +130,10 @@
             <hr>
             <br>
 				
-            <% } %>
+            <% }      
+            %>
             
-    </div>
+    
     <div class="rhs"></div>
-    </body>
+    
 </html>
