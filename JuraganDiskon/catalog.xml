@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
-    <system systemId="http://localhost:8080/MarketplaceWebService/Catalog?wsdl" uri="src/conf/xml-resources/web-service-references/Catalog/wsdl/localhost_8080/MarketplaceWebService/Catalog.wsdl"/>
-    <system systemId="http://localhost:8080/MarketplaceWebService/Catalog?xsd=1" uri="src/conf/xml-resources/web-service-references/Catalog/wsdl/localhost_8080/MarketplaceWebService/Catalog.xsd_1.xsd"/>
     <system systemId="http://localhost:8080/MarketplaceWebService/YourProduct?wsdl" uri="src/conf/xml-resources/web-service-references/YourProduct/wsdl/localhost_8080/MarketplaceWebService/YourProduct.wsdl"/>
     <system systemId="http://localhost:8080/MarketplaceWebService/YourProduct?xsd=1" uri="src/conf/xml-resources/web-service-references/YourProduct/wsdl/localhost_8080/MarketplaceWebService/YourProduct.xsd_1.xsd"/>
 <<<<<<< HEAD
-    <system systemId="http://localhost:8081/MarketplaceWebService/Catalog?wsdl" uri="src/conf/xml-resources/web-service-references/Catalog/wsdl/localhost_8081/MarketplaceWebService/Catalog.wsdl"/>
-    <system systemId="http://localhost:8081/MarketplaceWebService/Catalog?xsd=1" uri="src/conf/xml-resources/web-service-references/Catalog/wsdl/localhost_8081/MarketplaceWebService/Catalog.xsd_1.xsd"/>
+    
 =======
     <system systemId="http://localhost:8080/MarketplaceWebService/ConfirmationPurchase?wsdl" uri="src/conf/xml-resources/web-service-references/ConfirmationPurchase/wsdl/localhost_8080/MarketplaceWebService/ConfirmationPurchase.wsdl"/>
     <system systemId="http://localhost:8080/MarketplaceWebService/ConfirmationPurchase?xsd=1" uri="src/conf/xml-resources/web-service-references/ConfirmationPurchase/wsdl/localhost_8080/MarketplaceWebService/ConfirmationPurchase.xsd_1.xsd"/>
 >>>>>>> 3af9e1290f9a3a187ac83f143b4235912d654dcf
+
+    <system systemId="http://localhost:8080/MarketplaceWebService/Catalog?wsdl" uri="src/conf/xml-resources/web-service-references/Catalog/wsdl/localhost_8080/MarketplaceWebService/Catalog.wsdl"/>
+    <system systemId="http://localhost:8080/MarketplaceWebService/Catalog?xsd=1" uri="src/conf/xml-resources/web-service-references/Catalog/wsdl/localhost_8080/MarketplaceWebService/Catalog.xsd_1.xsd"/>
+    <system systemId="http://localhost:8081/MarketplaceWebService/Catalog?wsdl" uri="src/conf/xml-resources/web-service-references/Catalog/wsdl/localhost_8081/MarketplaceWebService/Catalog.wsdl"/>
+    <system systemId="http://localhost:8081/MarketplaceWebService/Catalog?xsd=1" uri="src/conf/xml-resources/web-service-references/Catalog/wsdl/localhost_8081/MarketplaceWebService/Catalog.xsd_1.xsd"/>
 </catalog>

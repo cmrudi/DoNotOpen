@@ -22,7 +22,7 @@
 	<body>
 	<div class="lhs-login"></div>
 	<div class="centre-login">
-		<h1>Sale<span>Project</span></h1>
+		<h1>Sale<span>Project</span></h1>f
 		<br>
 		<h3>Please Login</h3>
                 <c:if test="${not empty param.message}">
