@@ -27,6 +27,27 @@ public interface Catalog {
 
     /**
      * 
+     * @param textSearch
+     * @param searchMethod
+     * @param id
+     * @return
+     *     returns java.util.List<java.lang.String>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "searchCatalog", targetNamespace = "http://juragandiskon.me.com/", className = "com.me.juragandiskon.SearchCatalog")
+    @ResponseWrapper(localName = "searchCatalogResponse", targetNamespace = "http://juragandiskon.me.com/", className = "com.me.juragandiskon.SearchCatalogResponse")
+    @Action(input = "http://juragandiskon.me.com/Catalog/searchCatalogRequest", output = "http://juragandiskon.me.com/Catalog/searchCatalogResponse")
+    public List<String> searchCatalog(
+        @WebParam(name = "textSearch", targetNamespace = "")
+        String textSearch,
+        @WebParam(name = "searchMethod", targetNamespace = "")
+        String searchMethod,
+        @WebParam(name = "id", targetNamespace = "")
+        int id);
+
+    /**
+     * 
      * @param name
      * @return
      *     returns java.lang.String
@@ -52,27 +73,6 @@ public interface Catalog {
     @ResponseWrapper(localName = "getCatalogResponse", targetNamespace = "http://juragandiskon.me.com/", className = "com.me.juragandiskon.GetCatalogResponse")
     @Action(input = "http://juragandiskon.me.com/Catalog/getCatalogRequest", output = "http://juragandiskon.me.com/Catalog/getCatalogResponse")
     public List<String> getCatalog(
-        @WebParam(name = "id", targetNamespace = "")
-        int id);
-
-    /**
-     * 
-     * @param textSearch
-     * @param searchMethod
-     * @param id
-     * @return
-     *     returns java.util.List<java.lang.String>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "searchCatalog", targetNamespace = "http://juragandiskon.me.com/", className = "com.me.juragandiskon.SearchCatalog")
-    @ResponseWrapper(localName = "searchCatalogResponse", targetNamespace = "http://juragandiskon.me.com/", className = "com.me.juragandiskon.SearchCatalogResponse")
-    @Action(input = "http://juragandiskon.me.com/Catalog/searchCatalogRequest", output = "http://juragandiskon.me.com/Catalog/searchCatalogResponse")
-    public List<String> searchCatalog(
-        @WebParam(name = "textSearch", targetNamespace = "")
-        String textSearch,
-        @WebParam(name = "searchMethod", targetNamespace = "")
-        String searchMethod,
         @WebParam(name = "id", targetNamespace = "")
         int id);
 
