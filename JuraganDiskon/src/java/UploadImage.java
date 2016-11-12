@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-import com.me.juragandiskon.Catalog_Service;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,8 +33,6 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 @WebServlet(urlPatterns = {"/UploadImage"})
 public class UploadImage extends HttpServlet {
 
-    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8081/MarketplaceWebService/Catalog.wsdl")
-    private Catalog_Service service;
     
     private static final long serialVersionUID = 1L;
      

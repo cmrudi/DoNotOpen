@@ -27,6 +27,21 @@ public interface Catalog {
 
     /**
      * 
+     * @param name
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "hello", targetNamespace = "http://juragandiskon.me.com/", className = "com.me.juragandiskon.Hello")
+    @ResponseWrapper(localName = "helloResponse", targetNamespace = "http://juragandiskon.me.com/", className = "com.me.juragandiskon.HelloResponse")
+    @Action(input = "http://juragandiskon.me.com/Catalog/helloRequest", output = "http://juragandiskon.me.com/Catalog/helloResponse")
+    public String hello(
+        @WebParam(name = "name", targetNamespace = "")
+        String name);
+
+    /**
+     * 
      * @param textSearch
      * @param searchMethod
      * @param id
@@ -45,21 +60,6 @@ public interface Catalog {
         String searchMethod,
         @WebParam(name = "id", targetNamespace = "")
         int id);
-
-    /**
-     * 
-     * @param name
-     * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "hello", targetNamespace = "http://juragandiskon.me.com/", className = "com.me.juragandiskon.Hello")
-    @ResponseWrapper(localName = "helloResponse", targetNamespace = "http://juragandiskon.me.com/", className = "com.me.juragandiskon.HelloResponse")
-    @Action(input = "http://juragandiskon.me.com/Catalog/helloRequest", output = "http://juragandiskon.me.com/Catalog/helloResponse")
-    public String hello(
-        @WebParam(name = "name", targetNamespace = "")
-        String name);
 
     /**
      * 
