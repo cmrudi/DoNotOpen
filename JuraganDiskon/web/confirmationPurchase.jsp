@@ -5,6 +5,34 @@
 --%>
     <%-- start web service invocation --%><hr/>
     
+    <%-- start web service invocation --%><hr/>
+    <%
+    
+        String[] info = new String[10];
+        int productNum = 0;
+        String pageUri = request.getRequestURI();
+        pageUri = pageUri.substring(0, 15);
+    
+    try {
+	com.me.juragandiskon.ConfirmationPurchase_Service service = new com.me.juragandiskon.ConfirmationPurchase_Service();
+	com.me.juragandiskon.ConfirmationPurchase port = service.getConfirmationPurchasePort();
+	 // TODO initialize WS operation arguments here
+	int userId = Integer.parseInt(request.getParameterValues("id").toString());
+	int prodId = Integer.parseInt(request.getParameterValues("prod_id").toString());
+	// TODO process result here
+	java.util.List<java.lang.String> result = port.getPurchaseInfo(userId, prodId);
+        
+        int i = 1;
+        for (i = 1 ; i<7; i++) {
+            info[i] = result.get(i);
+        }
+        
+	out.println("Result = "+result);
+    } catch (Exception ex) {
+	// TODO handle custom exceptions here
+    }
+    %>
+    <%-- end web service invocation --%><hr/>
     
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -43,9 +71,9 @@
 
             <!--CONTAINER UPPER BORDER-->
             <form name="purchaseForm" action="" onsubmit="return validatePurchase()" method = "POST">
-                Product 	: <?php echo $productName ?> 
+                Product 	: <% out.println(info[1]); %> 
                 <br>
-                Price	 	: IDR <?php echo printPrice($price) ?>
+                Price	 	: IDR <% out.println(info[2]); %>
 
                 <br>
                 Quantity 	:<input type = "num" id="qty" name = "quantity" value ="1" onkeyup="return countTotalPrice()">
@@ -60,17 +88,17 @@
                 <br>
                 <br>
                 Consignee <br>
-                <input type = "text" name = "fullname" value = "<?php echo $fullName ?>">
+                <input type = "text" name = "fullname" value = "<% out.println(info[3]); %>">
                 <p id="fullNameAlert"></p><br>
                 Full Address <br>
 
-                <textarea name="fulladdress" id="fullAddress"  rows="4" cols="127" ><?php echo $fullAddress ?></textarea>
+                <textarea name="fulladdress" id="<% out.println(info[4]); %>"  rows="4" cols="127" ><?php echo $fullAddress ?></textarea>
                 <p class="warning" id="fullAddressAlert"></p><br>
                 Postal Code <br>
-                <input type = "text" name = "postalcode" value = "<?php echo $postalCode ?>">
+                <input type = "text" name = "postalcode" value = "<% out.println(info[5]); %>">
                 <p class="warning" id="postalCodeAlert"></p><br>
                 Phone Number <br>
-                <input type = "text" name = "phonenumber" value = "<?php echo $phoneNumber ?>">
+                <input type = "text" name = "phonenumber" value = "<% out.println(info[6]); %>">
                 <p class="warning" id="phoneNumberAlert"></p><br>
                 12 Digits Credit Card Number<br>
                 <input type = "text" id = "creditcard" name = "creditcard">

@@ -44,8 +44,8 @@
     </target>
     <target name="wsimport-client-Catalog" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/Catalog"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/Catalog" destdir="${build.generated.dir}/jax-wsCache/Catalog" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/Catalog/wsdl/localhost_8081/MarketplaceWebService/Catalog.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8081/MarketplaceWebService/Catalog?wsdl" xnocompile="true" xendorsed="true">
-            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/Catalog/wsdl/localhost_8081/MarketplaceWebService/Catalog.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/Catalog" destdir="${build.generated.dir}/jax-wsCache/Catalog" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/Catalog/wsdl/localhost_8080/MarketplaceWebService/Catalog.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/MarketplaceWebService/Catalog?wsdl" xnocompile="true" xendorsed="true">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/Catalog/wsdl/localhost_8080/MarketplaceWebService/Catalog.wsdl"/>
             <produces dir="${build.generated.dir}/jax-wsCache/Catalog"/>
         </wsimport>
         <copy todir="${build.generated.sources.dir}/jax-ws">
