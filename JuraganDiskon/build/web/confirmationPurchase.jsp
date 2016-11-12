@@ -12,12 +12,13 @@
         int productNum = 0;
         String pageUri = request.getRequestURI();
         pageUri = pageUri.substring(0, 15);
+        int userId = 0;
     
     try {
 	com.me.juragandiskon.ConfirmationPurchase_Service service = new com.me.juragandiskon.ConfirmationPurchase_Service();
 	com.me.juragandiskon.ConfirmationPurchase port = service.getConfirmationPurchasePort();
 	 // TODO initialize WS operation arguments here
-	int userId = Integer.parseInt(request.getParameterValues("id").toString());
+	userId = Integer.parseInt(request.getParameterValues("id").toString());
 	int prodId = Integer.parseInt(request.getParameterValues("prod_id").toString());
 	// TODO process result here
 	java.util.List<java.lang.String> result = port.getPurchaseInfo(userId, prodId);
@@ -107,7 +108,7 @@
                 <input type = "text" id = "verifnum" name = "verifnum">
                 <p class="warning" id="verifAlert"></p><br>
 
-                <input class="button-right-group" type="button" value="CANCEL" id="CANCEL" onclick="<?php print "location.href='".$getURL."catalog.php?id=".$id."';"?>">
+                <input class="button-right-group" type="button" value="CANCEL" id="CANCEL" onclick="<% out.print(pageUri+"catalog.jsp?"+"id="+userId);%>">
                 <input class="button-right-group" type="submit" name="confirm" value="CONFIRM">
 
 
