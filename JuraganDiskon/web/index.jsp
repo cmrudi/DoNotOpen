@@ -25,10 +25,10 @@
 		<h1>Sale<span>Project</span></h1>
 		<br>
 		<h3>Please Login</h3>
-                <c:if test="${not empty message}">
-                    <p>${message}</p>
+                <c:if test="${not empty param.message}">
+                    <p>${param.message}</p>
                 </c:if>
-		<form name="loginForm" action = "IdentityService" onsubmit="return validateLoginForm()"  method = "POST">
+		<form name="loginForm" action = "http://localhost:8082/IdentityService/LoginServlet" onsubmit="return validateLoginForm()"  method = "POST">
 			Username or email <br>
 			<input type = "text" name = "usernameOrEmail">
 			<p class="warning" id="usernameOrEmailAlert"></p><br>

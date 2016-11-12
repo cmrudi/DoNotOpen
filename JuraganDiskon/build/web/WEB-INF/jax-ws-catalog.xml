@@ -4,4 +4,6 @@
     <system systemId="http://localhost:8080/MarketplaceWebService/Catalog?xsd=1" uri="wsdl/localhost_8080/MarketplaceWebService/Catalog.xsd_1.xsd"/>
     <system systemId="http://localhost:8080/MarketplaceWebService/YourProduct?wsdl" uri="wsdl/localhost_8080/MarketplaceWebService/YourProduct.wsdl"/>
     <system systemId="http://localhost:8080/MarketplaceWebService/YourProduct?xsd=1" uri="wsdl/localhost_8080/MarketplaceWebService/YourProduct.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/MarketplaceWebService/ConfirmationPurchase?wsdl" uri="wsdl/localhost_8080/MarketplaceWebService/ConfirmationPurchase.wsdl"/>
+    <system systemId="http://localhost:8080/MarketplaceWebService/ConfirmationPurchase?xsd=1" uri="wsdl/localhost_8080/MarketplaceWebService/ConfirmationPurchase.xsd_1.xsd"/>
 </catalog>

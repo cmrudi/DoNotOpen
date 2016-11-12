@@ -42,7 +42,7 @@
         <!--PHP LOWER BORDER-->
         <hr><br><br>
 
-        <form name="addProductForm" enctype="multipart/form-data" action="" onsubmit="return validateAddProductForm()" method = "POST">
+        <form name="addProductForm" enctype="multipart/form-data" action="" onsubmit="return validateAddProductForm()" method="POST">
                 Product name <br>
                 <input type = "text" name = "productName">
                 <p class="warning" id="productNameAlert"></p><br>
@@ -58,6 +58,20 @@
                 <input class="button-right-group" type="submit" name="submit" value="ADD">
                 <br>
         </form>
+        <% String productName = request.getParameter("productName");
+           String productDesc = request.getParameter("desc");
+           String priceString = request.getParameter("productPrice");
+           int price;
+        %>
+        <h1><% if (productName == null) {
+                    out.println("kosongs");
+                } else {
+                    price = Integer.valueOf(priceString);
+                    out.println(productName);
+                } 
+            
+            
+            %></h1>
     </div>
     <div class="rhs"></div>
     </body>
