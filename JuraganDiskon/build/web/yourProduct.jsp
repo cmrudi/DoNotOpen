@@ -3,7 +3,11 @@
     Created on : Nov 8, 2016, 8:33:28 PM
     Author     : fazarafi
 --%>
-    <%-- start web service invocation --%>
+    <%@page import="com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date()"%>
+<%@page import="com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date()"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%-- start web service invocation --%>
     <%
     String[][] products = new String[100][9];
     int productNum = 0;
@@ -84,11 +88,21 @@
             <br><br>
           <% for (int i=0; i<productNum; i++){ %>
             <p>
-            <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-            <fmt:formatDate value="${products[i][8]}" pattern="l, d F Y" />
-            at <fmt:formatDate value="${products[i][8]}" pattern="H.i" />
-            <% 
-                out.write("<b>"+"date"+"</b><br>"+"at "+"jam");    
+            
+                <% 
+                /*
+                SimpleDateFormat d1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                SimpleDateFormat t1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                Date d = d1.parse(products[i][8]);
+                Date t = t1.parse(products[i][8]);
+                
+                StringBuilder date = new StringBuilder( d1.format(d) );
+                StringBuilder time = new StringBuilder( t1.format(t) );
+                date.toString();
+                time.toString();
+                
+                out.println("<b>"+date+"</b><br>"+"at "+time);    
+*/              out.println(products[i][8]);
             %>
             <hr>
             <div>
