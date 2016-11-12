@@ -21,10 +21,11 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author cmrudi
+ * @author fazarafi
  */
-@WebServlet(urlPatterns = {"/RegisterServlet"})
-public class RegisterServlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/ProductServlet"})
+public class ProductServlet extends HttpServlet {
+    
     //JDBC driver name and database URL
     static final String JDBC_DRIVER="com.mysql.jdbc.Driver";  
     static final String DB_URL="jdbc:mysql://localhost:3306/tubes_wbd_IS?zeroDateTimeBehavior=convertToNull";
@@ -32,7 +33,6 @@ public class RegisterServlet extends HttpServlet {
     //  Database credentials
     static final String USER = "cmrudi";
     static final String PASS = "takengon"; 
-
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -45,84 +45,46 @@ public class RegisterServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String fullname;
+        
         String username;
-        String email;
-        String password;
-        String fulladdress;
-        String postalcode;
-        String phonenumber;
-        String message = "";
-        String sql;
-        
-        
-        fullname = request.getParameter("fullname");
-        username = request.getParameter("username");
-        email = request.getParameter("email");
-        password = request.getParameter("password");
-        fulladdress = request.getParameter("fulladdress");
-        postalcode = request.getParameter("postalcode");
-        phonenumber = request.getParameter("phonenumber");
-        
+        int userId;
+        String message = "empty";
+        userId = Integer.parseInt(request.getParameterValues("id").toString());
         try{
             
             // Register JDBC driver
             Class.forName("com.mysql.jdbc.Driver");
             
-            
             // Open a connection
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            message = "line65";
+            // Execute SQL query
+            Statement stmt = conn.createStatement();
+            String sql;
+            sql = "SELECT ud.username,ud.full_name,ud.email,ud.full_address,ud.postal_code,ud.phone_number FROM user_data ud, user_authentication ua where ua.username = ud.username AND ua.id = ?";
+            message = "line76";
+            PreparedStatement pre = conn.prepareStatement(sql);
+            pre.setInt(1,userId);
+            ResultSet rs = pre.executeQuery();
+            String pass = "";
+            if (rs.next()) {            
+                pass = rs.getString("password");
+            }
             
-            Statement stmt1 = conn.createStatement();
-            sql = "SELECT username FROM user_authentication WHERE username = ?";
-            PreparedStatement pres = conn.prepareStatement(sql);
-            pres.setString(1,username);
-            ResultSet rs = pres.executeQuery();
-            if (!rs.next()) {
-                Statement stmt2 = conn.createStatement();
-                sql = "SELECT email FROM user_authentication WHERE email = ?";
-                PreparedStatement pres2 = conn.prepareStatement(sql);
-                pres2.setString(1,email);
-                ResultSet rs2 = pres2.executeQuery();
-                if (!rs2.next()) {
-                    // Execute SQL query
-                    Statement stmt3 = conn.createStatement();
-                    sql = "INSERT INTO user_data (username,full_name,email,full_address,postal_code,phone_number) VALUES (?,?,?,?,?,?)";        
-                    PreparedStatement pre = conn.prepareStatement(sql);
-                    pre.setString(1,username);
-                    pre.setString(2,fullname);
-                    pre.setString(3,email);
-                    pre.setString(4,fulladdress);
-                    pre.setString(5,postalcode);
-                    pre.setString(6,phonenumber);
-                    pre.executeUpdate();
-
-                    message = "Successfull";
-                    request.setAttribute("message", message);
-                    response.sendRedirect("http://localhost:8080/JuraganDiskon/catalog.jsp");
-                    stmt3.close();
-                }
-                else {
-                    message = "Email already in used";
-                    response.sendRedirect("http://localhost:8080/JuraganDiskon/register.jsp?message=" + URLEncoder.encode(message, "UTF-8"));
-                }
-                stmt2.close();
+            if (pass.equals(1)) {
+                message = "Successfull";
+                request.getSession().setAttribute("message", message);
+                response.sendRedirect("http://localhost:8080/JuraganDiskon/catalog.jsp"); 
             }
             else {
-                message = "Username already in used";
-                response.sendRedirect("http://localhost:8080/JuraganDiskon/register.jsp?message=" + URLEncoder.encode(message, "UTF-8"));
-            }
-            stmt1.close();
-            
-            
-            
-   
+                message = "Username or password incorrect";
+                response.sendRedirect("http://localhost:8080/JuraganDiskon/index.jsp?message=" + URLEncoder.encode(message, "UTF-8"));
+            }  
             
             // Clean-up environment
-            
-            
-            
-            conn.close();
+            rs.close();
+            stmt.close();
+            conn.close(); 
         }catch(SQLException se){
             //Handle errors for JDBC
             se.printStackTrace();
@@ -132,6 +94,21 @@ public class RegisterServlet extends HttpServlet {
         }finally{
           
         } //end try
+        
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+             /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet LoginServlet</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet LoginServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Error Checking " + message + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

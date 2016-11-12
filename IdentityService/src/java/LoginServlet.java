@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,7 +29,7 @@ public class LoginServlet extends HttpServlet {
     static final String EMAIL_REGEX = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
     //JDBC driver name and database URL
     static final String JDBC_DRIVER="com.mysql.jdbc.Driver";  
-    static final String DB_URL="jdbc:mysql://localhost:3306/tubes_wbd?zeroDateTimeBehavior=convertToNull";
+    static final String DB_URL="jdbc:mysql://localhost:3306/tubes_wbd_IS?zeroDateTimeBehavior=convertToNull";
 
     //  Database credentials
     static final String USER = "cmrudi";
@@ -85,7 +86,14 @@ public class LoginServlet extends HttpServlet {
             if (pass.equals(password)) {
                 message = "Successfull";
                 request.getSession().setAttribute("message", message);
-                response.sendRedirect("http://localhost:8080/JuraganDiskon/catalog.jsp"); 
+                
+                Cookie userCookie = new Cookie("loggedUser", usernameOrEmail);
+                // setting cookie to expiry in 60 mins
+                userCookie.setMaxAge(60 * 60);
+                response.addCookie(userCookie);
+
+                response.sendRedirect("http://localhost:8080/JuraganDiskon/catalog.jsp");
+                
             }
             else {
                 message = "Username or password incorrect";
