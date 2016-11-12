@@ -1,20 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
             <file>file:/home/fazarafi/NetBeansProjects/JuraganDiskon/web/index.jsp</file>
             <file>file:/home/fazarafi/NetBeansProjects/JuraganDiskon/web/yourProduct.jsp</file>
             <file>file:/home/fazarafi/NetBeansProjects/JuraganDiskon/web/confirmationPurchase.jsp</file>
             <file>file:/home/fazarafi/NetBeansProjects/JuraganDiskon/web/catalog.jsp</file>
-=======
-            <file>file:/home/cmrudi/NetBeansProjects/JuraganDiskon/src/java/RegisterServlet.java</file>
-            <file>file:/home/cmrudi/NetBeansProjects/JuraganDiskon/web/catalog.jsp</file>
-            <file>file:/home/cmrudi/NetBeansProjects/JuraganDiskon/web/style.css</file>
-            <file>file:/home/cmrudi/NetBeansProjects/JuraganDiskon/src/java/IdentityService.java</file>
-            <file>file:/home/cmrudi/NetBeansProjects/JuraganDiskon/web/index.jsp</file>
->>>>>>> db7a40c181f005bbc289824e051e7e30e698d656
         </group>
     </open-files>
 </project-private>

@@ -160,7 +160,7 @@
                     <br><p id="totalLikes"><% out.println(catalog[i][5]); %> likes</p>
                     <p><% out.println(catalog[i][6]); %> purchases<br></p>
                       <button type="button" class="<% if (catalog[i][9].equals("1")) { out.print("likedButton");} else { out.print("likeButton");} %>" id="likeButton">Like</button>
-                      <button type="button" id="buyButton" onclick="">Buy</button>
+                      <a type="button" id="buyButton" href="/JuraganDiskon/confirmationPurchase.jsp">Buy</a>
                 </div>
             </div>
             <br>

@@ -74,5 +74,21 @@
         <delete dir="${build.generated.sources.dir}/jax-ws/com/me/juragandiskon"/>
         <delete dir="${build.generated.dir}/jax-wsCache/ConfirmationPurchase"/>
     </target>
-    <target name="wsimport-client-generate" depends="wsimport-client-Catalog, wsimport-client-YourProduct, wsimport-client-ConfirmationPurchase"/>
+    <target name="wsimport-client-EditProduct" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/EditProduct"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/EditProduct" destdir="${build.generated.dir}/jax-wsCache/EditProduct" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/EditProduct/wsdl/localhost_8080/MarketplaceWebService/EditProduct.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/MarketplaceWebService/EditProduct?wsdl" xnocompile="true">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/EditProduct/wsdl/localhost_8080/MarketplaceWebService/EditProduct.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/EditProduct"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/EditProduct">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-EditProduct" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/com/me/juragandiskon"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/EditProduct"/>
+    </target>
+    <target name="wsimport-client-generate" depends="wsimport-client-Catalog, wsimport-client-YourProduct, wsimport-client-ConfirmationPurchase, wsimport-client-EditProduct"/>
 </project>

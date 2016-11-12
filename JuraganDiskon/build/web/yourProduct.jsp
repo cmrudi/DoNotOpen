@@ -3,8 +3,6 @@
     Created on : Nov 8, 2016, 8:33:28 PM
     Author     : fazarafi
 --%>
-    <%@page import="com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date()"%>
-<%@page import="com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date()"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%-- start web service invocation --%>
@@ -113,7 +111,7 @@
                 <div class="right-container">
                     <br><p id="totalLikes"><% out.println(products[i][5]); %> likes</p>
                     <p><% out.println(products[i][6]); %> purchases<br></p>
-                        <button type="button" id="editButton" onclick="<?php print "location.href='".$getURL."editProduct.php?id=".$id."&productId=".$row['product_id']."';"?>">EDIT</button>
+                        <a type="button" id="editButton" href = "/JuraganDiskon/editProduct.jsp"?>EDIT</a>
                         <button type="button" id="deleteButton" name="deletingProduct" value="<% out.print(products[i][0]); %>">DELETE</button>
                 </div>
             </div>

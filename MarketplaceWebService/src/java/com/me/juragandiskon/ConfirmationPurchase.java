@@ -16,19 +16,21 @@ import javax.jws.WebParam;
 @WebService(serviceName = "ConfirmationPurchase")
 public class ConfirmationPurchase {
 
-    /**
-     * This is a sample web service operation
-     */
-    @WebMethod(operationName = "hello")
-    public String hello(@WebParam(name = "name") String txt) {
-        return "Hello " + txt + " !";
-    }
 
     /**
      * Web service operation
      */
     @WebMethod(operationName = "getTotalPrice")
     public String getTotalPrice(@WebParam(name = "qty") int qty) {
+        //TODO write your implementation code here:
+        return null;
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "getPurchaseInfo")
+    public String getPurchaseInfo(@WebParam(name = "prod_id") int prod_id, @WebParam(name = "user_id") int user_id) {
         //TODO write your implementation code here:
         return null;
     }

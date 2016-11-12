@@ -37,9 +37,6 @@
             </ul>
         </div>
         <h2>Please add your product here</h2>
-        <!--PHP UPPER BORDER-->
-
-        <!--PHP LOWER BORDER-->
         <hr><br><br>
 
         <form name="addProductForm" enctype="multipart/form-data" action="" onsubmit="return validateAddProductForm()" method="POST">

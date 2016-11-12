@@ -4,11 +4,11 @@
 <xsd:import namespace="http://juragandiskon.me.com/" schemaLocation="http://localhost:8080/MarketplaceWebService/ConfirmationPurchase?xsd=1"/>
 </xsd:schema>
 </types>
-<message name="hello">
-<part name="parameters" element="tns:hello"/>
+<message name="getPurchaseInfo">
+<part name="parameters" element="tns:getPurchaseInfo"/>
 </message>
-<message name="helloResponse">
-<part name="parameters" element="tns:helloResponse"/>
+<message name="getPurchaseInfoResponse">
+<part name="parameters" element="tns:getPurchaseInfoResponse"/>
 </message>
 <message name="getTotalPrice">
 <part name="parameters" element="tns:getTotalPrice"/>
@@ -17,9 +17,9 @@
 <part name="parameters" element="tns:getTotalPriceResponse"/>
 </message>
 <portType name="ConfirmationPurchase">
-<operation name="hello">
-<input wsam:Action="http://juragandiskon.me.com/ConfirmationPurchase/helloRequest" message="tns:hello"/>
-<output wsam:Action="http://juragandiskon.me.com/ConfirmationPurchase/helloResponse" message="tns:helloResponse"/>
+<operation name="getPurchaseInfo">
+<input wsam:Action="http://juragandiskon.me.com/ConfirmationPurchase/getPurchaseInfoRequest" message="tns:getPurchaseInfo"/>
+<output wsam:Action="http://juragandiskon.me.com/ConfirmationPurchase/getPurchaseInfoResponse" message="tns:getPurchaseInfoResponse"/>
 </operation>
 <operation name="getTotalPrice">
 <input wsam:Action="http://juragandiskon.me.com/ConfirmationPurchase/getTotalPriceRequest" message="tns:getTotalPrice"/>
@@ -28,7 +28,7 @@
 </portType>
 <binding name="ConfirmationPurchasePortBinding" type="tns:ConfirmationPurchase">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="hello">
+<operation name="getPurchaseInfo">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
