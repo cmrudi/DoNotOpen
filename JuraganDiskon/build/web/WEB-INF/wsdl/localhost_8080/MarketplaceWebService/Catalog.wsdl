@@ -4,6 +4,15 @@
 <xsd:import namespace="http://juragandiskon.me.com/" schemaLocation="http://localhost:8080/MarketplaceWebService/Catalog?xsd=1"/>
 </xsd:schema>
 </types>
+<<<<<<< HEAD
+=======
+<message name="getCatalog">
+<part name="parameters" element="tns:getCatalog"/>
+</message>
+<message name="getCatalogResponse">
+<part name="parameters" element="tns:getCatalogResponse"/>
+</message>
+>>>>>>> db0a6577e2815fbd8f6c3c3af1f2ceeb6c0f4e6c
 <message name="hello">
 <part name="parameters" element="tns:hello"/>
 </message>
@@ -23,6 +32,13 @@
 <part name="parameters" element="tns:getCatalogResponse"/>
 </message>
 <portType name="Catalog">
+<<<<<<< HEAD
+=======
+<operation name="getCatalog">
+<input wsam:Action="http://juragandiskon.me.com/Catalog/getCatalogRequest" message="tns:getCatalog"/>
+<output wsam:Action="http://juragandiskon.me.com/Catalog/getCatalogResponse" message="tns:getCatalogResponse"/>
+</operation>
+>>>>>>> db0a6577e2815fbd8f6c3c3af1f2ceeb6c0f4e6c
 <operation name="hello">
 <input wsam:Action="http://juragandiskon.me.com/Catalog/helloRequest" message="tns:hello"/>
 <output wsam:Action="http://juragandiskon.me.com/Catalog/helloResponse" message="tns:helloResponse"/>
@@ -38,7 +54,7 @@
 </portType>
 <binding name="CatalogPortBinding" type="tns:Catalog">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="hello">
+<operation name="getCatalog">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -47,7 +63,11 @@
 <soap:body use="literal"/>
 </output>
 </operation>
+<<<<<<< HEAD
 <operation name="searchCatalog">
+=======
+<operation name="hello">
+>>>>>>> db0a6577e2815fbd8f6c3c3af1f2ceeb6c0f4e6c
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
