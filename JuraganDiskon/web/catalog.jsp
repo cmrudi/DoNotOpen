@@ -13,14 +13,10 @@
    // Get an array of Cookies associated with this domain
    cookies = request.getCookies();
    if( cookies != null ){
-      out.println("<h2> Found Cookies Name and Value</h2>");
       for (int i = 0; i < cookies.length; i++){
          cookie = cookies[i];
-         out.print("Name : " + cookie.getName( ) + ",  ");
-         out.print("Value: " + cookie.getValue( )+" <br/>");
          if (cookie.getName().equals("JuraganDiskon")) {
              selectedCookie = cookie.getValue();
-             out.print("Selected Value: " + cookie.getValue( )+" <br/>");
          }
       }
   }else{
@@ -31,14 +27,18 @@
     <%
     String[][] catalog = new String[100][10];
     int productNum = 0;
+    int user_id;
+    String username = "";
     try {
 	com.me.juragandiskon.Catalog_Service service = new com.me.juragandiskon.Catalog_Service();
 	com.me.juragandiskon.Catalog port = service.getCatalogPort();
 	// TODO process result here
         
 	java.util.List<java.lang.String> result = port.getCatalog(selectedCookie);//please check user id here
-        productNum = Integer.parseInt(result.get(0));
-        int i = 1;
+        user_id = Integer.parseInt(result.get(0));
+        username = result.get(1);
+        productNum = Integer.parseInt(result.get(2));
+        int i = 3;
         for (int j = 0; j < productNum; j++ ) {
             catalog[j][0] = result.get(i); //product_id
             i++;
@@ -97,7 +97,7 @@
         <!--HEADER BOTTOM BORDER-->
         <div class="width-100">
             <ul>
-                <h4 class="hiUsername">Hi, username</h4>
+                <h4 class="hiUsername">Hi, <% out.println(username); %></h4>
                 <div class="separator"></div>
                 <button type="button" id="logoutButton" onclick="" >logout</button>
             </ul>

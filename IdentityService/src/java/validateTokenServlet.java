@@ -4,8 +4,14 @@
  * and open the template in the editor.
  */
 
+
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,20 +43,51 @@ public class validateTokenServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+        String responseText = "ttt";
         String access_token = request.getParameter("access_token");
-        PrintWriter out = response.getWriter();
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet validateTokenServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet validateTokenServlet at " + request.getContextPath() + "</h1>");
-            out.println("<h1>Servlet validateTokenServlet " + access_token + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            
+        // Execute SQL query
+        String sql;
+        try{
+            // Register JDBC driver
+            Class.forName("com.mysql.jdbc.Driver");
+            
+            // Open a connection
+            Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            
+            sql = "SELECT id,username FROM user_authentication WHERE access_token = ?";
+            
+            PreparedStatement pre = conn.prepareStatement(sql);
+            pre.setString(1,access_token);
+            ResultSet rs = pre.executeQuery();
+            String id;
+            String username;
+            if (rs.next()) {            
+                id = rs.getString("id");
+                username = rs.getString("username");
+                
+            }
+            else {
+                id = "0";
+                username = "-";
+            }
+            responseText = id + "-" + username;
+            
+            response.setStatus(HttpServletResponse.SC_OK);
+            response.getWriter().write(responseText);
+            response.getWriter().flush();
+            response.getWriter().close();
+            
+            
+        }catch(SQLException se){
+            //Handle errors for JDBC
+            se.printStackTrace();
+        }catch(Exception e){
+            //Handle errors for Class.forName
+            e.printStackTrace();
+        }finally{
+          
+        } //end try
         
             
     }

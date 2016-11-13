@@ -5,6 +5,12 @@
  */
 package com.me.juragandiskon;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -33,6 +39,7 @@ public class Catalog {
     //  Database credentials
     static final String USER = "cmrudi";
     static final String PASS = "takengon";
+    static final String USER_AGENT = "Mozilla/5.0";
     /**
      * This is a sample web service operation
      */
@@ -45,8 +52,14 @@ public class Catalog {
      * Web service operation
      */
     @WebMethod(operationName = "getCatalog")
-    public ArrayList<String> getCatalog(@WebParam(name = "access_token") String access_token) {
+    public ArrayList<String> getCatalog(@WebParam(name = "access_token") String access_token) throws IOException {
         //TODO write your implementation code here:
+        String username;
+        String id;
+        String response = validateAccessToken(access_token);
+        String[] parse = response.split("-");
+        id = parse[0];
+        username = parse[1];
         int user_id = 1;
         ArrayList<String> result = new ArrayList<String>();
         try{
@@ -65,6 +78,9 @@ public class Catalog {
             pre.setInt(1,user_id);
             ResultSet rs = pre.executeQuery();
             rs.last();
+            
+            result.add(id);
+            result.add(username);
             result.add(String.valueOf(rs.getRow()));
             rs.beforeFirst();
             while (rs.next()) {
@@ -146,9 +162,27 @@ public class Catalog {
             //Handle errors for Class.forName
             e.printStackTrace();
         }finally{
-       
+        
         }
         return result;
+    } 
+    
+    public String validateAccessToken (String access_token) throws MalformedURLException, IOException {
+        String url = "http://localhost:8082/IdentityService/validateTokenServlet?access_token="+access_token;
+        URL obj = new URL(url);
+        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+        
+        con.setRequestMethod("GET");
+        con.setRequestProperty("User-Agent",USER_AGENT);
+        int responseCode = con.getResponseCode();
+        
+        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+        String inputLine;
+        StringBuffer response = new StringBuffer();
+        while ((inputLine = in.readLine()) !=null) {
+            response.append(inputLine);
+        }
+        return response.toString();
     }
     
     
