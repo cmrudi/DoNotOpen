@@ -5,6 +5,7 @@
  */
 
 
+import com.me.juragandiskon.AddProduct_Service;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,6 +34,9 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
  */
 @WebServlet(urlPatterns = {"/UploadImage"})
 public class UploadImage extends HttpServlet {
+
+    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8081/MarketplaceWebService/AddProduct.wsdl")
+    private AddProduct_Service service;
 
     
     private static final long serialVersionUID = 1L;
@@ -59,10 +64,26 @@ public class UploadImage extends HttpServlet {
             throws ServletException, IOException, FileUploadException {
         // Check that we have a file upload request
         PrintWriter writer = response.getWriter();
-        String productName;
-        String description;
-        String price;
-        String pictureName;
+        String productName = "";
+        String description = "";
+        String price = "";
+        String pictureName = "";
+        
+        Cookie cookie = null;
+        Cookie[] cookies = null;
+        String selectedCookie = "";
+        // Get an array of Cookies associated with this domain
+        cookies = request.getCookies();
+        if( cookies != null ){
+           for (int i = 0; i < cookies.length; i++){
+              cookie = cookies[i];
+              if (cookie.getName().equals("JuraganDiskon")) {
+                  selectedCookie = cookie.getValue();
+              }
+           }
+       }else{
+           writer.println("<h2>No cookies founds</h2>");
+       }
         
 
         
@@ -108,6 +129,7 @@ public class UploadImage extends HttpServlet {
  
             if (formItems != null && formItems.size() > 0) {
                 // iterates over form's fields
+                int k = 0;
                 for (FileItem item : formItems) {
                     // processes only fields that are not form fields
                     if (!item.isFormField()) {
@@ -119,27 +141,39 @@ public class UploadImage extends HttpServlet {
                         item.write(storeFile);
                         request.setAttribute("message",
                             "Upload has been done successfully!");
-                        writer.println("fileName = " + fileName);
+                        pictureName = fileName;
                     }
                     else {
                         // Get the field name
                         String fieldName = item.getName();
                         // Get the field value
                         String value = item.getString();
-                        writer.println("fieldName = " + fieldName);
-                        writer.println("value = " + value);
+                        if (k==0) {
+                            productName = value;
+                            k++;
+                        }
+                        else if (k == 1) {
+                            description = value;
+                            k++;
+                        }
+                        else if (k == 2) {
+                            price = value;
+                            k++;
+                        }
+       
                     }
+                 
                 }
             }
         } catch (Exception ex) {
             request.setAttribute("message",
                     "There was an error: " + ex.getMessage());
         }
-        writer.println("getServletContext().getRealPath(\"\") = " +new File(new File(getServletContext().getRealPath("")).getParent()).getParent() + "/web/");
-        writer.println("File.separator = " + File.separator);
-        writer.println("UPLOAD_DIRECTORY = "+ UPLOAD_DIRECTORY);
+  
+        String usernameReponse = addProductToDB(productName,price,description,pictureName,selectedCookie);
+
         //redirects client to message page
-        getServletContext().getRequestDispatcher("/addProduct.jsp").forward(request, response);
+        //getServletContext().getRequestDispatcher("/addProduct.jsp").forward(request, response);
     
     }
 
@@ -189,6 +223,13 @@ public class UploadImage extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private String addProductToDB(String productName, String price, String description, String imageAddress, String accessToken) {
+        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
+        // If the calling of port operations may lead to race condition some synchronization is required.
+        com.me.juragandiskon.AddProduct port = service.getAddProductPort();
+        return port.addProductToDB(productName, price, description, imageAddress, accessToken);
+    }
 
 
 

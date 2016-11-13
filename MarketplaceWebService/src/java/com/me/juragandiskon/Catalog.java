@@ -54,22 +54,21 @@ public class Catalog {
     @WebMethod(operationName = "getCatalog")
     public ArrayList<String> getCatalog(@WebParam(name = "access_token") String access_token) throws IOException {
         //TODO write your implementation code here:
+        String check = "slalusa";
         String username;
         String id;
         String response = validateAccessToken(access_token);
         String[] parse = response.split("-");
         id = parse[0];
         username = parse[1];
-        int user_id = 1;
+        int user_id = Integer.valueOf(id);
         ArrayList<String> result = new ArrayList<String>();
         try{
             
             // Register JDBC driver
-            Class.forName("com.mysql.jdbc.Driver");
-            
+            Class.forName(JDBC_DRIVER);
             // Open a connection
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            
             // Execute SQL query
             Statement stmt = conn.createStatement();
             String sql;
@@ -102,12 +101,10 @@ public class Catalog {
             se.printStackTrace();
         }catch(Exception e){
             //Handle errors for Class.forName
-            e.printStackTrace();
+            result.add(e.toString());
         }finally{
        
         }
-        
-        
         return result;
     }
 

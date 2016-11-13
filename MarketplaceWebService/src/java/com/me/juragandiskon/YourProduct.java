@@ -32,7 +32,7 @@ public class YourProduct {
     static final String USER = "cmrudi";
     static final String PASS = "takengon";
     
-    public ArrayList<String> getProducts(@WebParam(name = "id") int user_id) {
+    public ArrayList<String> getProducts(@WebParam(name = "user_name") String username) {
         ArrayList<String> result;
         result = new ArrayList();
         try{
@@ -47,9 +47,9 @@ public class YourProduct {
             Statement stmt = conn.createStatement();
             String sql;
             //sql = "SELECT product.product_id, product.username, product.product_name, product.price, product.description, product.total_likes, product.total_purchased, product.image_address, product.timestamp FROM product, user_authentication as ua WHERE deleted = 0 AND product.username = ua.username AND ua.id = ?";
-            sql = "SELECT * FROM product WHERE product_id = ?";
+            sql = "SELECT * FROM product WHERE username = ?";
             PreparedStatement pre = conn.prepareStatement(sql);
-            pre.setInt(1,user_id);
+            pre.setString(1,username);
             ResultSet rs = pre.executeQuery();
             rs.last();
             result.add(String.valueOf(rs.getRow()));

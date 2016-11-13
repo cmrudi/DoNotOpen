@@ -4,10 +4,6 @@
 
 <xs:element name="getPurchaseInfoResponse" type="tns:getPurchaseInfoResponse"/>
 
-<xs:element name="getTotalPrice" type="tns:getTotalPrice"/>
-
-<xs:element name="getTotalPriceResponse" type="tns:getTotalPriceResponse"/>
-
 <xs:complexType name="getPurchaseInfo">
 <xs:sequence>
 <xs:element name="user_id" type="xs:int"/>
@@ -18,18 +14,6 @@
 <xs:complexType name="getPurchaseInfoResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="getTotalPrice">
-<xs:sequence>
-<xs:element name="qty" type="xs:int"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="getTotalPriceResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 </xs:schema>

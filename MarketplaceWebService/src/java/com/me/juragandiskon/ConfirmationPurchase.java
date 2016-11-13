@@ -5,7 +5,6 @@
  */
 package com.me.juragandiskon;
 
-import static com.me.juragandiskon.EditProduct.DB_URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -34,14 +33,6 @@ public class ConfirmationPurchase {
     static final String USER = "cmrudi";
     static final String PASS = "takengon";
 
-    /**
-     * Web service operation
-     */
-    @WebMethod(operationName = "getTotalPrice")
-    public String getTotalPrice(@WebParam(name = "qty") int qty) {
-        //TODO write your implementation code here:
-        return null;
-    }
 
     /**
      * Web service operation
@@ -101,4 +92,7 @@ public class ConfirmationPurchase {
         
         return result;
     }
+    
+    
+    
 }
