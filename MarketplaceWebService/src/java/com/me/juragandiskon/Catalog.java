@@ -45,9 +45,9 @@ public class Catalog {
      * Web service operation
      */
     @WebMethod(operationName = "getCatalog")
-    public ArrayList<String> getCatalog(@WebParam(name = "id") int user_id) {
+    public ArrayList<String> getCatalog(@WebParam(name = "access_token") String access_token) {
         //TODO write your implementation code here:
-
+        int user_id = 1;
         ArrayList<String> result = new ArrayList<String>();
         try{
             

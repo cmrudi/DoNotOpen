@@ -63,7 +63,7 @@ public interface Catalog {
 
     /**
      * 
-     * @param id
+     * @param accessToken
      * @return
      *     returns java.util.List<java.lang.String>
      */
@@ -73,7 +73,7 @@ public interface Catalog {
     @ResponseWrapper(localName = "getCatalogResponse", targetNamespace = "http://juragandiskon.me.com/", className = "com.me.juragandiskon.GetCatalogResponse")
     @Action(input = "http://juragandiskon.me.com/Catalog/getCatalogRequest", output = "http://juragandiskon.me.com/Catalog/getCatalogResponse")
     public List<String> getCatalog(
-        @WebParam(name = "id", targetNamespace = "")
-        int id);
+        @WebParam(name = "access_token", targetNamespace = "")
+        String accessToken);
 
 }

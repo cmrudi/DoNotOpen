@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.UUID;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -63,17 +64,18 @@ public class LoginServlet extends HttpServlet {
             
             // Open a connection
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            messagess = "line65";
+            
             // Execute SQL query
-            Statement stmt = conn.createStatement();
             String sql;
+            String sqlUpdate;
             if (usernameOrEmail.matches(EMAIL_REGEX)) {
                 sql = "SELECT password FROM user_authentication WHERE email= ?";
+                sqlUpdate = "UPDATE user_authentication SET access_token = ? WHERE email = ?";
             }
             else {
                 sql = "SELECT password FROM user_authentication WHERE username= ?";
+                sqlUpdate = "UPDATE user_authentication SET access_token = ? WHERE username = ?";
             }
-            messagess = "line76";
             PreparedStatement pre = conn.prepareStatement(sql);
             pre.setString(1,usernameOrEmail);
             ResultSet rs = pre.executeQuery();
@@ -81,17 +83,22 @@ public class LoginServlet extends HttpServlet {
             if (rs.next()) {            
                 pass = rs.getString("password");
             }
-            
             String message;
             if (pass.equals(password)) {
-                message = "Successfull";
-                request.getSession().setAttribute("message", message);
+                String uuid = UUID.randomUUID().toString();
+                PreparedStatement preId = conn.prepareStatement(sqlUpdate);
+                preId.setString(1,uuid);
+                messagess = uuid;
+                preId.setString(2,usernameOrEmail);
+                preId.executeUpdate();
                 
-                Cookie userCookie = new Cookie("loggedUser", usernameOrEmail);
+                
+                
+                Cookie userCookie = new Cookie("JuraganDiskon", uuid);
                 // setting cookie to expiry in 60 mins
                 userCookie.setMaxAge(60 * 60);
+                userCookie.setPath("/");
                 response.addCookie(userCookie);
-
                 response.sendRedirect("http://localhost:8080/JuraganDiskon/catalog.jsp");
                 
             }
@@ -102,7 +109,6 @@ public class LoginServlet extends HttpServlet {
             
             // Clean-up environment
             rs.close();
-            stmt.close();
             conn.close(); 
         }catch(SQLException se){
             //Handle errors for JDBC

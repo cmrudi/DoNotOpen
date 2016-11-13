@@ -24,8 +24,12 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _GetEditingProdInfo_QNAME = new QName("http://juragandiskon.me.com/", "getEditingProdInfo");
-    private final static QName _GetEditingProdInfoResponse_QNAME = new QName("http://juragandiskon.me.com/", "getEditingProdInfoResponse");
+    private final static QName _GetCatalog_QNAME = new QName("http://juragandiskon.me.com/", "getCatalog");
+    private final static QName _GetCatalogResponse_QNAME = new QName("http://juragandiskon.me.com/", "getCatalogResponse");
+    private final static QName _Hello_QNAME = new QName("http://juragandiskon.me.com/", "hello");
+    private final static QName _HelloResponse_QNAME = new QName("http://juragandiskon.me.com/", "helloResponse");
+    private final static QName _SearchCatalog_QNAME = new QName("http://juragandiskon.me.com/", "searchCatalog");
+    private final static QName _SearchCatalogResponse_QNAME = new QName("http://juragandiskon.me.com/", "searchCatalogResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.me.juragandiskon
@@ -35,37 +39,105 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetEditingProdInfo }
+     * Create an instance of {@link GetCatalog }
      * 
      */
-    public GetEditingProdInfo createGetEditingProdInfo() {
-        return new GetEditingProdInfo();
+    public GetCatalog createGetCatalog() {
+        return new GetCatalog();
     }
 
     /**
-     * Create an instance of {@link GetEditingProdInfoResponse }
+     * Create an instance of {@link GetCatalogResponse }
      * 
      */
-    public GetEditingProdInfoResponse createGetEditingProdInfoResponse() {
-        return new GetEditingProdInfoResponse();
+    public GetCatalogResponse createGetCatalogResponse() {
+        return new GetCatalogResponse();
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetEditingProdInfo }{@code >}}
+     * Create an instance of {@link Hello }
      * 
      */
-    @XmlElementDecl(namespace = "http://juragandiskon.me.com/", name = "getEditingProdInfo")
-    public JAXBElement<GetEditingProdInfo> createGetEditingProdInfo(GetEditingProdInfo value) {
-        return new JAXBElement<GetEditingProdInfo>(_GetEditingProdInfo_QNAME, GetEditingProdInfo.class, null, value);
+    public Hello createHello() {
+        return new Hello();
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetEditingProdInfoResponse }{@code >}}
+     * Create an instance of {@link HelloResponse }
      * 
      */
-    @XmlElementDecl(namespace = "http://juragandiskon.me.com/", name = "getEditingProdInfoResponse")
-    public JAXBElement<GetEditingProdInfoResponse> createGetEditingProdInfoResponse(GetEditingProdInfoResponse value) {
-        return new JAXBElement<GetEditingProdInfoResponse>(_GetEditingProdInfoResponse_QNAME, GetEditingProdInfoResponse.class, null, value);
+    public HelloResponse createHelloResponse() {
+        return new HelloResponse();
+    }
+
+    /**
+     * Create an instance of {@link SearchCatalog }
+     * 
+     */
+    public SearchCatalog createSearchCatalog() {
+        return new SearchCatalog();
+    }
+
+    /**
+     * Create an instance of {@link SearchCatalogResponse }
+     * 
+     */
+    public SearchCatalogResponse createSearchCatalogResponse() {
+        return new SearchCatalogResponse();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetCatalog }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://juragandiskon.me.com/", name = "getCatalog")
+    public JAXBElement<GetCatalog> createGetCatalog(GetCatalog value) {
+        return new JAXBElement<GetCatalog>(_GetCatalog_QNAME, GetCatalog.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetCatalogResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://juragandiskon.me.com/", name = "getCatalogResponse")
+    public JAXBElement<GetCatalogResponse> createGetCatalogResponse(GetCatalogResponse value) {
+        return new JAXBElement<GetCatalogResponse>(_GetCatalogResponse_QNAME, GetCatalogResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Hello }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://juragandiskon.me.com/", name = "hello")
+    public JAXBElement<Hello> createHello(Hello value) {
+        return new JAXBElement<Hello>(_Hello_QNAME, Hello.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link HelloResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://juragandiskon.me.com/", name = "helloResponse")
+    public JAXBElement<HelloResponse> createHelloResponse(HelloResponse value) {
+        return new JAXBElement<HelloResponse>(_HelloResponse_QNAME, HelloResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SearchCatalog }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://juragandiskon.me.com/", name = "searchCatalog")
+    public JAXBElement<SearchCatalog> createSearchCatalog(SearchCatalog value) {
+        return new JAXBElement<SearchCatalog>(_SearchCatalog_QNAME, SearchCatalog.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SearchCatalogResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://juragandiskon.me.com/", name = "searchCatalogResponse")
+    public JAXBElement<SearchCatalogResponse> createSearchCatalogResponse(SearchCatalogResponse value) {
+        return new JAXBElement<SearchCatalogResponse>(_SearchCatalogResponse_QNAME, SearchCatalogResponse.class, null, value);
     }
 
 }

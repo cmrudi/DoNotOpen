@@ -4,7 +4,29 @@
     Author     : cmrudi
 --%>
 
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+   Cookie cookie = null;
+   Cookie[] cookies = null;
+   String selectedCookie = "";
+   // Get an array of Cookies associated with this domain
+   cookies = request.getCookies();
+   if( cookies != null ){
+      out.println("<h2> Found Cookies Name and Value</h2>");
+      for (int i = 0; i < cookies.length; i++){
+         cookie = cookies[i];
+         out.print("Name : " + cookie.getName( ) + ",  ");
+         out.print("Value: " + cookie.getValue( )+" <br/>");
+         if (cookie.getName().equals("JuraganDiskon")) {
+             selectedCookie = cookie.getValue();
+             out.print("Selected Value: " + cookie.getValue( )+" <br/>");
+         }
+      }
+  }else{
+      out.println("<h2>No cookies founds</h2>");
+  }
+%>
     <%-- start web service invocation --%>
     <%
     String[][] catalog = new String[100][10];
@@ -14,7 +36,7 @@
 	com.me.juragandiskon.Catalog port = service.getCatalogPort();
 	// TODO process result here
         
-	java.util.List<java.lang.String> result = port.getCatalog(1);//please check user id here
+	java.util.List<java.lang.String> result = port.getCatalog(selectedCookie);//please check user id here
         productNum = Integer.parseInt(result.get(0));
         int i = 1;
         for (int j = 0; j < productNum; j++ ) {
