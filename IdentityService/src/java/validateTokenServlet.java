@@ -37,6 +37,8 @@ public class validateTokenServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
+        String access_token = request.getParameter("access_token");
         PrintWriter out = response.getWriter();
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -46,6 +48,7 @@ public class validateTokenServlet extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet validateTokenServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet validateTokenServlet " + access_token + "</h1>");
             out.println("</body>");
             out.println("</html>");
         
