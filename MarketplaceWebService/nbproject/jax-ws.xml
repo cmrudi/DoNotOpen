@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jax-ws xmlns="http://www.netbeans.org/ns/jax-ws/1">
   <services>
-    <service name="ConfirmationPurchase">
-      <implementation-class>com.me.juragandiskon.ConfirmationPurchase</implementation-class>
-    </service>
-    <service name="EditProduct">
-      <implementation-class>com.me.juragandiskon.EditProduct</implementation-class>
-    </service>
     <service name="Catalog">
       <implementation-class>com.me.juragandiskon.Catalog</implementation-class>
-    </service>
-    <service name="YourProduct">
-      <implementation-class>com.me.juragandiskon.YourProduct</implementation-class>
     </service>
     <service name="AddProduct">
       <implementation-class>com.me.juragandiskon.AddProduct</implementation-class>
     </service>
     <service name="Like">
       <implementation-class>com.me.juragandiskon.Like</implementation-class>
+    </service>
+    <service name="ConfirmationPurchase">
+      <implementation-class>com.me.juragandiskon.ConfirmationPurchase</implementation-class>
+    </service>
+    <service name="EditProduct">
+      <implementation-class>com.me.juragandiskon.EditProduct</implementation-class>
+    </service>
+    <service name="YourProduct">
+      <implementation-class>com.me.juragandiskon.YourProduct</implementation-class>
+    </service>
+    <service name="Purchases">
+      <implementation-class>com.me.juragandiskon.Purchases</implementation-class>
+    </service>
+    <service name="Sales">
+      <implementation-class>com.me.juragandiskon.Sales</implementation-class>
     </service>
   </services>
   <clients/>

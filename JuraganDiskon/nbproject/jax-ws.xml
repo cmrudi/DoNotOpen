@@ -35,6 +35,102 @@
         </wsimport-option>
       </wsimport-options>
     </client>
+    <client name="AddProduct">
+      <wsdl-url>http://localhost:8081/MarketplaceWebService/AddProduct?wsdl</wsdl-url>
+      <local-wsdl-file>localhost_8081/MarketplaceWebService/AddProduct.wsdl</local-wsdl-file>
+      <package-name>com.me.juragandiskon</package-name>
+      <catalog-file>catalog.xml</catalog-file>
+      <wsimport-options>
+        <wsimport-option>
+          <wsimport-option-name>extension</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>verbose</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>fork</wsimport-option-name>
+          <wsimport-option-value>false</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>wsdlLocation</wsimport-option-name>
+          <wsimport-option-value>http://localhost:8081/MarketplaceWebService/AddProduct?wsdl</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xnocompile</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xendorsed</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+      </wsimport-options>
+    </client>
+    <client name="Like">
+      <wsdl-url>http://localhost:8081/MarketplaceWebService/Like?wsdl</wsdl-url>
+      <local-wsdl-file>localhost_8081/MarketplaceWebService/Like.wsdl</local-wsdl-file>
+      <package-name>com.me.juragandiskon</package-name>
+      <catalog-file>catalog.xml</catalog-file>
+      <wsimport-options>
+        <wsimport-option>
+          <wsimport-option-name>extension</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>verbose</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>fork</wsimport-option-name>
+          <wsimport-option-value>false</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>wsdlLocation</wsimport-option-name>
+          <wsimport-option-value>http://localhost:8081/MarketplaceWebService/Like?wsdl</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xnocompile</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xendorsed</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+      </wsimport-options>
+    </client>
+    <client name="EditProduct">
+      <wsdl-url>http://localhost:8081/MarketplaceWebService/EditProduct?wsdl</wsdl-url>
+      <local-wsdl-file>localhost_8081/MarketplaceWebService/EditProduct.wsdl</local-wsdl-file>
+      <package-name>com.me.juragandiskon</package-name>
+      <catalog-file>catalog.xml</catalog-file>
+      <wsimport-options>
+        <wsimport-option>
+          <wsimport-option-name>extension</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>verbose</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>fork</wsimport-option-name>
+          <wsimport-option-value>false</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>wsdlLocation</wsimport-option-name>
+          <wsimport-option-value>http://localhost:8081/MarketplaceWebService/EditProduct?wsdl</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xnocompile</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xendorsed</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+      </wsimport-options>
+    </client>
     <client name="YourProduct">
       <wsdl-url>http://localhost:8081/MarketplaceWebService/YourProduct?wsdl</wsdl-url>
       <local-wsdl-file>localhost_8081/MarketplaceWebService/YourProduct.wsdl</local-wsdl-file>
@@ -99,9 +195,9 @@
         </wsimport-option>
       </wsimport-options>
     </client>
-    <client name="EditProduct">
-      <wsdl-url>http://localhost:8081/MarketplaceWebService/EditProduct?wsdl</wsdl-url>
-      <local-wsdl-file>localhost_8081/MarketplaceWebService/EditProduct.wsdl</local-wsdl-file>
+    <client name="Purchases">
+      <wsdl-url>http://localhost:8081/MarketplaceWebService/Purchases?wsdl</wsdl-url>
+      <local-wsdl-file>localhost_8081/MarketplaceWebService/Purchases.wsdl</local-wsdl-file>
       <package-name>com.me.juragandiskon</package-name>
       <catalog-file>catalog.xml</catalog-file>
       <wsimport-options>
@@ -119,7 +215,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://localhost:8081/MarketplaceWebService/EditProduct?wsdl</wsimport-option-value>
+          <wsimport-option-value>http://localhost:8081/MarketplaceWebService/Purchases?wsdl</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>
@@ -131,9 +227,9 @@
         </wsimport-option>
       </wsimport-options>
     </client>
-    <client name="AddProduct">
-      <wsdl-url>http://localhost:8081/MarketplaceWebService/AddProduct?wsdl</wsdl-url>
-      <local-wsdl-file>localhost_8081/MarketplaceWebService/AddProduct.wsdl</local-wsdl-file>
+    <client name="Sales">
+      <wsdl-url>http://localhost:8081/MarketplaceWebService/Sales?wsdl</wsdl-url>
+      <local-wsdl-file>localhost_8081/MarketplaceWebService/Sales.wsdl</local-wsdl-file>
       <package-name>com.me.juragandiskon</package-name>
       <catalog-file>catalog.xml</catalog-file>
       <wsimport-options>
@@ -151,39 +247,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://localhost:8081/MarketplaceWebService/AddProduct?wsdl</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>xnocompile</wsimport-option-name>
-          <wsimport-option-value>true</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>xendorsed</wsimport-option-name>
-          <wsimport-option-value>true</wsimport-option-value>
-        </wsimport-option>
-      </wsimport-options>
-    </client>
-    <client name="Like">
-      <wsdl-url>http://localhost:8081/MarketplaceWebService/Like?wsdl</wsdl-url>
-      <local-wsdl-file>localhost_8081/MarketplaceWebService/Like.wsdl</local-wsdl-file>
-      <package-name>com.me.juragandiskon</package-name>
-      <catalog-file>catalog.xml</catalog-file>
-      <wsimport-options>
-        <wsimport-option>
-          <wsimport-option-name>extension</wsimport-option-name>
-          <wsimport-option-value>true</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>verbose</wsimport-option-name>
-          <wsimport-option-value>true</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>fork</wsimport-option-name>
-          <wsimport-option-value>false</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://localhost:8081/MarketplaceWebService/Like?wsdl</wsimport-option-value>
+          <wsimport-option-value>http://localhost:8081/MarketplaceWebService/Sales?wsdl</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>

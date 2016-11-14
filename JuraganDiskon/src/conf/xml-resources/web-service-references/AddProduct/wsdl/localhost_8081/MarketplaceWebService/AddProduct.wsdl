@@ -4,11 +4,11 @@
 <xsd:import namespace="http://juragandiskon.me.com/" schemaLocation="http://localhost:8081/MarketplaceWebService/AddProduct?xsd=1"/>
 </xsd:schema>
 </types>
-<message name="hello">
-<part name="parameters" element="tns:hello"/>
+<message name="addProductToDB">
+<part name="parameters" element="tns:addProductToDB"/>
 </message>
-<message name="helloResponse">
-<part name="parameters" element="tns:helloResponse"/>
+<message name="addProductToDBResponse">
+<part name="parameters" element="tns:addProductToDBResponse"/>
 </message>
 <message name="validateAccessToken">
 <part name="parameters" element="tns:validateAccessToken"/>
@@ -22,16 +22,16 @@
 <message name="IOException">
 <part name="fault" element="tns:IOException"/>
 </message>
-<message name="addProductToDB">
-<part name="parameters" element="tns:addProductToDB"/>
+<message name="hello">
+<part name="parameters" element="tns:hello"/>
 </message>
-<message name="addProductToDBResponse">
-<part name="parameters" element="tns:addProductToDBResponse"/>
+<message name="helloResponse">
+<part name="parameters" element="tns:helloResponse"/>
 </message>
 <portType name="AddProduct">
-<operation name="hello">
-<input wsam:Action="http://juragandiskon.me.com/AddProduct/helloRequest" message="tns:hello"/>
-<output wsam:Action="http://juragandiskon.me.com/AddProduct/helloResponse" message="tns:helloResponse"/>
+<operation name="addProductToDB">
+<input wsam:Action="http://juragandiskon.me.com/AddProduct/addProductToDBRequest" message="tns:addProductToDB"/>
+<output wsam:Action="http://juragandiskon.me.com/AddProduct/addProductToDBResponse" message="tns:addProductToDBResponse"/>
 </operation>
 <operation name="validateAccessToken">
 <input wsam:Action="http://juragandiskon.me.com/AddProduct/validateAccessTokenRequest" message="tns:validateAccessToken"/>
@@ -39,14 +39,14 @@
 <fault message="tns:MalformedURLException" name="MalformedURLException" wsam:Action="http://juragandiskon.me.com/AddProduct/validateAccessToken/Fault/MalformedURLException"/>
 <fault message="tns:IOException" name="IOException" wsam:Action="http://juragandiskon.me.com/AddProduct/validateAccessToken/Fault/IOException"/>
 </operation>
-<operation name="addProductToDB">
-<input wsam:Action="http://juragandiskon.me.com/AddProduct/addProductToDBRequest" message="tns:addProductToDB"/>
-<output wsam:Action="http://juragandiskon.me.com/AddProduct/addProductToDBResponse" message="tns:addProductToDBResponse"/>
+<operation name="hello">
+<input wsam:Action="http://juragandiskon.me.com/AddProduct/helloRequest" message="tns:hello"/>
+<output wsam:Action="http://juragandiskon.me.com/AddProduct/helloResponse" message="tns:helloResponse"/>
 </operation>
 </portType>
 <binding name="AddProductPortBinding" type="tns:AddProduct">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="hello">
+<operation name="addProductToDB">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -70,7 +70,7 @@
 <soap:fault name="IOException" use="literal"/>
 </fault>
 </operation>
-<operation name="addProductToDB">
+<operation name="hello">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

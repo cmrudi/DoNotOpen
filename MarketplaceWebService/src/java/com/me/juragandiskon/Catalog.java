@@ -34,7 +34,7 @@ public class Catalog {
     
     //JDBC driver name and database URL
     static final String JDBC_DRIVER="com.mysql.jdbc.Driver";  
-    static final String DB_URL="jdbc:mysql://localhost:3306/tubes_wbd?zeroDateTimeBehavior=convertToNull";
+    static final String DB_URL="jdbc:mysql://localhost:3306/tubes_wbd_MP?zeroDateTimeBehavior=convertToNull";
 
     //  Database credentials
     static final String USER = "cmrudi";
@@ -112,7 +112,10 @@ public class Catalog {
      * Web service operation
      */
     @WebMethod(operationName = "searchCatalog")
-    public ArrayList<String> searchCatalog(@WebParam(name = "textSearch") String textSearch, @WebParam(name = "searchMethod") String searchMethod, @WebParam(name = "id") int user_id) {
+    public ArrayList<String> searchCatalog(@WebParam(name =
+            
+            
+            "textSearch") String textSearch, @WebParam(name = "searchMethod") String searchMethod, @WebParam(name = "id") int user_id) {
         //TODO write your implementation code here:
         ArrayList<String> result = new ArrayList<String>();
         try {

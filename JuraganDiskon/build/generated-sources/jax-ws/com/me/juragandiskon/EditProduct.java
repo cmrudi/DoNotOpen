@@ -8,6 +8,7 @@ import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.ws.Action;
+import javax.xml.ws.FaultAction;
 import javax.xml.ws.RequestWrapper;
 import javax.xml.ws.ResponseWrapper;
 
@@ -28,16 +29,81 @@ public interface EditProduct {
     /**
      * 
      * @param prodId
+     * @param accessToken
      * @return
      *     returns java.util.List<java.lang.String>
+     * @throws IOException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")
     @RequestWrapper(localName = "getEditingProdInfo", targetNamespace = "http://juragandiskon.me.com/", className = "com.me.juragandiskon.GetEditingProdInfo")
     @ResponseWrapper(localName = "getEditingProdInfoResponse", targetNamespace = "http://juragandiskon.me.com/", className = "com.me.juragandiskon.GetEditingProdInfoResponse")
-    @Action(input = "http://juragandiskon.me.com/EditProduct/getEditingProdInfoRequest", output = "http://juragandiskon.me.com/EditProduct/getEditingProdInfoResponse")
+    @Action(input = "http://juragandiskon.me.com/EditProduct/getEditingProdInfoRequest", output = "http://juragandiskon.me.com/EditProduct/getEditingProdInfoResponse", fault = {
+        @FaultAction(className = IOException_Exception.class, value = "http://juragandiskon.me.com/EditProduct/getEditingProdInfo/Fault/IOException")
+    })
     public List<String> getEditingProdInfo(
         @WebParam(name = "prod_id", targetNamespace = "")
-        int prodId);
+        int prodId,
+        @WebParam(name = "access_token", targetNamespace = "")
+        String accessToken)
+        throws IOException_Exception
+    ;
+
+    /**
+     * 
+     * @param productId
+     * @param price
+     * @param description
+     * @param imageAddress
+     * @param accessToken
+     * @param productName
+     * @return
+     *     returns java.lang.String
+     * @throws IOException_Exception
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "editTheProduct", targetNamespace = "http://juragandiskon.me.com/", className = "com.me.juragandiskon.EditTheProduct")
+    @ResponseWrapper(localName = "editTheProductResponse", targetNamespace = "http://juragandiskon.me.com/", className = "com.me.juragandiskon.EditTheProductResponse")
+    @Action(input = "http://juragandiskon.me.com/EditProduct/editTheProductRequest", output = "http://juragandiskon.me.com/EditProduct/editTheProductResponse", fault = {
+        @FaultAction(className = IOException_Exception.class, value = "http://juragandiskon.me.com/EditProduct/editTheProduct/Fault/IOException")
+    })
+    public String editTheProduct(
+        @WebParam(name = "product_id", targetNamespace = "")
+        int productId,
+        @WebParam(name = "productName", targetNamespace = "")
+        String productName,
+        @WebParam(name = "price", targetNamespace = "")
+        String price,
+        @WebParam(name = "description", targetNamespace = "")
+        String description,
+        @WebParam(name = "imageAddress", targetNamespace = "")
+        String imageAddress,
+        @WebParam(name = "access_token", targetNamespace = "")
+        String accessToken)
+        throws IOException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns java.lang.String
+     * @throws IOException_Exception
+     * @throws MalformedURLException_Exception
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "validateAccessToken", targetNamespace = "http://juragandiskon.me.com/", className = "com.me.juragandiskon.ValidateAccessToken")
+    @ResponseWrapper(localName = "validateAccessTokenResponse", targetNamespace = "http://juragandiskon.me.com/", className = "com.me.juragandiskon.ValidateAccessTokenResponse")
+    @Action(input = "http://juragandiskon.me.com/EditProduct/validateAccessTokenRequest", output = "http://juragandiskon.me.com/EditProduct/validateAccessTokenResponse", fault = {
+        @FaultAction(className = MalformedURLException_Exception.class, value = "http://juragandiskon.me.com/EditProduct/validateAccessToken/Fault/MalformedURLException"),
+        @FaultAction(className = IOException_Exception.class, value = "http://juragandiskon.me.com/EditProduct/validateAccessToken/Fault/IOException")
+    })
+    public String validateAccessToken(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0)
+        throws IOException_Exception, MalformedURLException_Exception
+    ;
 
 }

@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="user_id" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
+ *         &lt;element name="access_token" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="prod_id" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
@@ -29,30 +29,38 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "getPurchaseInfo", propOrder = {
-    "userId",
+    "accessToken",
     "prodId"
 })
 public class GetPurchaseInfo {
 
-    @XmlElement(name = "user_id")
-    protected int userId;
+    @XmlElement(name = "access_token")
+    protected String accessToken;
     @XmlElement(name = "prod_id")
     protected int prodId;
 
     /**
-     * Gets the value of the userId property.
+     * Gets the value of the accessToken property.
      * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
-    public int getUserId() {
-        return userId;
+    public String getAccessToken() {
+        return accessToken;
     }
 
     /**
-     * Sets the value of the userId property.
+     * Sets the value of the accessToken property.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
-    public void setUserId(int value) {
-        this.userId = value;
+    public void setAccessToken(String value) {
+        this.accessToken = value;
     }
 
     /**

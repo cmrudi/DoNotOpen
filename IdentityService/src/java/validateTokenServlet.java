@@ -7,6 +7,7 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -65,18 +66,17 @@ public class validateTokenServlet extends HttpServlet {
             if (rs.next()) {            
                 id = rs.getString("id");
                 username = rs.getString("username");
-                
+                responseText = id + "-" + username;
+            
+                response.setStatus(HttpServletResponse.SC_OK);
+                response.getWriter().write(responseText);
+                response.getWriter().flush();
+                response.getWriter().close();
             }
             else {
-                id = "0";
-                username = "-";
+                String message = "Please login, your token is invalid";
+                response.sendRedirect("http://localhost:8080/JuraganDiskon/index.jsp?message=" + URLEncoder.encode(message, "UTF-8"));
             }
-            responseText = id + "-" + username;
-            
-            response.setStatus(HttpServletResponse.SC_OK);
-            response.getWriter().write(responseText);
-            response.getWriter().flush();
-            response.getWriter().close();
             
             
         }catch(SQLException se){

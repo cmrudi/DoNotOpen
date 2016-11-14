@@ -134,6 +134,7 @@ public class UploadImage extends HttpServlet {
                     // processes only fields that are not form fields
                     if (!item.isFormField()) {
                         String fileName = new File(item.getName()).getName();
+                        pictureName = fileName;
                         String filePath = uploadPath + File.separator + fileName;
                         File storeFile = new File(filePath);
  
@@ -141,26 +142,13 @@ public class UploadImage extends HttpServlet {
                         item.write(storeFile);
                         request.setAttribute("message",
                             "Upload has been done successfully!");
-                        pictureName = fileName;
+                        
                     }
                     else {
                         // Get the field name
                         String fieldName = item.getName();
                         // Get the field value
                         String value = item.getString();
-                        if (k==0) {
-                            productName = value;
-                            k++;
-                        }
-                        else if (k == 1) {
-                            description = value;
-                            k++;
-                        }
-                        else if (k == 2) {
-                            price = value;
-                            k++;
-                        }
-       
                     }
                  
                 }
@@ -173,7 +161,7 @@ public class UploadImage extends HttpServlet {
         String usernameReponse = addProductToDB(productName,price,description,pictureName,selectedCookie);
 
         //redirects client to message page
-        //getServletContext().getRequestDispatcher("/addProduct.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/addProduct.jsp").forward(request, response);
     
     }
 

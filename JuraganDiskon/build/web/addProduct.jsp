@@ -3,7 +3,24 @@
     Created on : Nov 4, 2016, 1:24:34 AM
     Author     : cmrudi
 --%>
-
+<%
+   Cookie cookie = null;
+   Cookie[] cookies = null;
+   String selectedCookie = "";
+   // Get an array of Cookies associated with this domain
+   cookies = request.getCookies();
+   if( cookies != null ){
+      for (int i = 0; i < cookies.length; i++){
+         cookie = cookies[i];
+         if (cookie.getName().equals("JuraganDiskon")) {
+             selectedCookie = cookie.getValue();
+         }
+      }
+  }else{
+      out.println("<h2>No cookies founds</h2>");
+  }
+  String username = "default";
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -24,16 +41,16 @@
             <li><a class="mati" href="/JuraganDiskon/catalog.jsp">Catalog</a></li>
             <li><a class="mati" href="/JuraganDiskon/yourProduct.jsp">Your Product</a></li>
             <li><a class="mati" href="/JuraganDiskon/addProduct.jsp">Add Product</a></li>
-            <li><a class="mati" href="#">Sales</a></li>
-            <li><a class="mati" href="#">Purchase</a></li>
+            <li><a class="mati" href="/JuraganDiskon/sales.jsp">Sales</a></li>
+            <li><a class="mati" href="/JuraganDiskon/purchase.jsp">Purchase</a></li>
             </ul>
         </div>
         <!--HEADER BOTTOM BORDER-->
         <div class="width-100">
             <ul>
-                <h4 class="hiUsername">Hi, username</h4>
+                <h4 class="hiUsername">Hi, <% out.println(username); %></h4>
                 <div class="separator"></div>
-                <button type="button" id="logoutButton" onclick="" >logout</button>
+                <a type="button" id="logoutButton" href="http://localhost:8082/IdentityService/LogoutServlet?id=<% out.println(selectedCookie); %>">logout</a>
             </ul>
         </div>
         <h2>Please add your product here</h2>
@@ -60,15 +77,6 @@
            String priceString = request.getParameter("productPrice");
            int price;
         %>
-        <h1><% if (productName == null) {
-                    out.println("kosongs");
-                } else {
-                    price = Integer.valueOf(priceString);
-                    out.println(productName);
-                } 
-            
-            
-            %></h1>
     </div>
     <div class="rhs"></div>
     </body>

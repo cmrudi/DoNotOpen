@@ -10,10 +10,40 @@
 <message name="getEditingProdInfoResponse">
 <part name="parameters" element="tns:getEditingProdInfoResponse"/>
 </message>
+<message name="IOException">
+<part name="fault" element="tns:IOException"/>
+</message>
+<message name="editTheProduct">
+<part name="parameters" element="tns:editTheProduct"/>
+</message>
+<message name="editTheProductResponse">
+<part name="parameters" element="tns:editTheProductResponse"/>
+</message>
+<message name="validateAccessToken">
+<part name="parameters" element="tns:validateAccessToken"/>
+</message>
+<message name="validateAccessTokenResponse">
+<part name="parameters" element="tns:validateAccessTokenResponse"/>
+</message>
+<message name="MalformedURLException">
+<part name="fault" element="tns:MalformedURLException"/>
+</message>
 <portType name="EditProduct">
 <operation name="getEditingProdInfo">
 <input wsam:Action="http://juragandiskon.me.com/EditProduct/getEditingProdInfoRequest" message="tns:getEditingProdInfo"/>
 <output wsam:Action="http://juragandiskon.me.com/EditProduct/getEditingProdInfoResponse" message="tns:getEditingProdInfoResponse"/>
+<fault message="tns:IOException" name="IOException" wsam:Action="http://juragandiskon.me.com/EditProduct/getEditingProdInfo/Fault/IOException"/>
+</operation>
+<operation name="editTheProduct">
+<input wsam:Action="http://juragandiskon.me.com/EditProduct/editTheProductRequest" message="tns:editTheProduct"/>
+<output wsam:Action="http://juragandiskon.me.com/EditProduct/editTheProductResponse" message="tns:editTheProductResponse"/>
+<fault message="tns:IOException" name="IOException" wsam:Action="http://juragandiskon.me.com/EditProduct/editTheProduct/Fault/IOException"/>
+</operation>
+<operation name="validateAccessToken">
+<input wsam:Action="http://juragandiskon.me.com/EditProduct/validateAccessTokenRequest" message="tns:validateAccessToken"/>
+<output wsam:Action="http://juragandiskon.me.com/EditProduct/validateAccessTokenResponse" message="tns:validateAccessTokenResponse"/>
+<fault message="tns:MalformedURLException" name="MalformedURLException" wsam:Action="http://juragandiskon.me.com/EditProduct/validateAccessToken/Fault/MalformedURLException"/>
+<fault message="tns:IOException" name="IOException" wsam:Action="http://juragandiskon.me.com/EditProduct/validateAccessToken/Fault/IOException"/>
 </operation>
 </portType>
 <binding name="EditProductPortBinding" type="tns:EditProduct">
@@ -26,6 +56,36 @@
 <output>
 <soap:body use="literal"/>
 </output>
+<fault name="IOException">
+<soap:fault name="IOException" use="literal"/>
+</fault>
+</operation>
+<operation name="editTheProduct">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="IOException">
+<soap:fault name="IOException" use="literal"/>
+</fault>
+</operation>
+<operation name="validateAccessToken">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="MalformedURLException">
+<soap:fault name="MalformedURLException" use="literal"/>
+</fault>
+<fault name="IOException">
+<soap:fault name="IOException" use="literal"/>
+</fault>
 </operation>
 </binding>
 <service name="EditProduct">

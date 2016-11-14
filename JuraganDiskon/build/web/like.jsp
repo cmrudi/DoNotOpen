@@ -22,24 +22,26 @@
        out.println("<h2>No cookies founds</h2>");
    }
     
-    
+
         //-- start web service invocation --
-   
+    String result = "";
     try {
 	com.me.juragandiskon.Like_Service service = new com.me.juragandiskon.Like_Service();
 	com.me.juragandiskon.Like port = service.getLikePort();
 	 // TODO initialize WS operation arguments here
 	java.lang.String accessToken = selectedCookie;
 	// TODO process result here
-	java.lang.String result = port.setLike(productId, accessToken);
+	result = port.setLike(productId, accessToken);
 	out.println("Result = "+result);
     } catch (Exception ex) {
 	// TODO handle custom exceptions here
     }
+    out.println(result);
     
     String site = new String("http://localhost:8080/JuraganDiskon/catalog.jsp");
     response.setStatus(response.SC_MOVED_TEMPORARILY);
     response.setHeader("Location", site);
+    
     %>
     <%-- end web service invocation --%><hr/>
 

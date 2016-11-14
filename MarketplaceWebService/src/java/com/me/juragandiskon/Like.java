@@ -30,7 +30,7 @@ import javax.jws.WebParam;
 public class Like {
     //JDBC driver name and database URL
     static final String JDBC_DRIVER="com.mysql.jdbc.Driver";  
-    static final String DB_URL="jdbc:mysql://localhost:3306/tubes_wbd?zeroDateTimeBehavior=convertToNull";
+    static final String DB_URL="jdbc:mysql://localhost:3306/tubes_wbd_MP?zeroDateTimeBehavior=convertToNull";
 
     //  Database credentials
     static final String USER = "cmrudi";
@@ -68,7 +68,7 @@ public class Like {
     @WebMethod(operationName = "setLike")
     public String setLike(@WebParam(name = "productId") String productId, @WebParam(name = "accessToken") String accessToken) throws IOException {
         //TODO write your implementation code here:
-        String message = "success";
+        String message = "";
         String username;
         String id;
         String response = validateAccessToken(accessToken);
@@ -97,22 +97,22 @@ public class Like {
             }
             else {
                 sqlUpdate1 = "DELETE FROM like_data WHERE product_id = ? AND user_id = ?";
-                sqlUpdate2 = "UPDATE product SET total_likes = total_likes + 1 WHERE product_id = ?";
+                sqlUpdate2 = "UPDATE product SET total_likes = total_likes - 1 WHERE product_id = ?";
             }
-            PreparedStatement pre1 = conn.prepareStatement(sql);
+            PreparedStatement pre1 = conn.prepareStatement(sqlUpdate1);
             pre1.setInt(1,Integer.valueOf(productId));
             pre1.setInt(2,Integer.valueOf(id));
             
-            PreparedStatement pre2 = conn.prepareStatement(sql);
+            PreparedStatement pre2 = conn.prepareStatement(sqlUpdate2);
             pre2.setInt(1,Integer.valueOf(productId));
-            
             pre1.executeUpdate();
             pre2.executeUpdate();
-           
+            message = "successfullying";
             
         }catch(SQLException se){
             //Handle errors for JDBC
             se.printStackTrace();
+            message = String.valueOf(se);
         }catch(Exception e){
             //Handle errors for Class.forName
             e.printStackTrace();

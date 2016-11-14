@@ -10,10 +10,40 @@
 <message name="getPurchaseInfoResponse">
 <part name="parameters" element="tns:getPurchaseInfoResponse"/>
 </message>
+<message name="IOException">
+<part name="fault" element="tns:IOException"/>
+</message>
+<message name="purchaseProduct">
+<part name="parameters" element="tns:purchaseProduct"/>
+</message>
+<message name="purchaseProductResponse">
+<part name="parameters" element="tns:purchaseProductResponse"/>
+</message>
+<message name="validateAccessToken">
+<part name="parameters" element="tns:validateAccessToken"/>
+</message>
+<message name="validateAccessTokenResponse">
+<part name="parameters" element="tns:validateAccessTokenResponse"/>
+</message>
+<message name="MalformedURLException">
+<part name="fault" element="tns:MalformedURLException"/>
+</message>
 <portType name="ConfirmationPurchase">
 <operation name="getPurchaseInfo">
 <input wsam:Action="http://juragandiskon.me.com/ConfirmationPurchase/getPurchaseInfoRequest" message="tns:getPurchaseInfo"/>
 <output wsam:Action="http://juragandiskon.me.com/ConfirmationPurchase/getPurchaseInfoResponse" message="tns:getPurchaseInfoResponse"/>
+<fault message="tns:IOException" name="IOException" wsam:Action="http://juragandiskon.me.com/ConfirmationPurchase/getPurchaseInfo/Fault/IOException"/>
+</operation>
+<operation name="purchaseProduct">
+<input wsam:Action="http://juragandiskon.me.com/ConfirmationPurchase/purchaseProductRequest" message="tns:purchaseProduct"/>
+<output wsam:Action="http://juragandiskon.me.com/ConfirmationPurchase/purchaseProductResponse" message="tns:purchaseProductResponse"/>
+<fault message="tns:IOException" name="IOException" wsam:Action="http://juragandiskon.me.com/ConfirmationPurchase/purchaseProduct/Fault/IOException"/>
+</operation>
+<operation name="validateAccessToken">
+<input wsam:Action="http://juragandiskon.me.com/ConfirmationPurchase/validateAccessTokenRequest" message="tns:validateAccessToken"/>
+<output wsam:Action="http://juragandiskon.me.com/ConfirmationPurchase/validateAccessTokenResponse" message="tns:validateAccessTokenResponse"/>
+<fault message="tns:MalformedURLException" name="MalformedURLException" wsam:Action="http://juragandiskon.me.com/ConfirmationPurchase/validateAccessToken/Fault/MalformedURLException"/>
+<fault message="tns:IOException" name="IOException" wsam:Action="http://juragandiskon.me.com/ConfirmationPurchase/validateAccessToken/Fault/IOException"/>
 </operation>
 </portType>
 <binding name="ConfirmationPurchasePortBinding" type="tns:ConfirmationPurchase">
@@ -26,6 +56,36 @@
 <output>
 <soap:body use="literal"/>
 </output>
+<fault name="IOException">
+<soap:fault name="IOException" use="literal"/>
+</fault>
+</operation>
+<operation name="purchaseProduct">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="IOException">
+<soap:fault name="IOException" use="literal"/>
+</fault>
+</operation>
+<operation name="validateAccessToken">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="MalformedURLException">
+<soap:fault name="MalformedURLException" use="literal"/>
+</fault>
+<fault name="IOException">
+<soap:fault name="IOException" use="literal"/>
+</fault>
 </operation>
 </binding>
 <service name="ConfirmationPurchase">

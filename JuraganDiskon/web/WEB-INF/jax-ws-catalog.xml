@@ -20,4 +20,8 @@
     <system systemId="http://localhost:8081/MarketplaceWebService/AddProduct?xsd=1" uri="wsdl/localhost_8081/MarketplaceWebService/AddProduct.xsd_1.xsd"/>
     <system systemId="http://localhost:8081/MarketplaceWebService/Like?wsdl" uri="wsdl/localhost_8081/MarketplaceWebService/Like.wsdl"/>
     <system systemId="http://localhost:8081/MarketplaceWebService/Like?xsd=1" uri="wsdl/localhost_8081/MarketplaceWebService/Like.xsd_1.xsd"/>
+    <system systemId="http://localhost:8081/MarketplaceWebService/Purchases?wsdl" uri="wsdl/localhost_8081/MarketplaceWebService/Purchases.wsdl"/>
+    <system systemId="http://localhost:8081/MarketplaceWebService/Purchases?xsd=1" uri="wsdl/localhost_8081/MarketplaceWebService/Purchases.xsd_1.xsd"/>
+    <system systemId="http://localhost:8081/MarketplaceWebService/Sales?wsdl" uri="wsdl/localhost_8081/MarketplaceWebService/Sales.wsdl"/>
+    <system systemId="http://localhost:8081/MarketplaceWebService/Sales?xsd=1" uri="wsdl/localhost_8081/MarketplaceWebService/Sales.xsd_1.xsd"/>
 </catalog>

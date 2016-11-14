@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="user_name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *         &lt;element name="access_token" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -28,35 +28,35 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "getProducts", propOrder = {
-    "userName"
+    "accessToken"
 })
 public class GetProducts {
 
-    @XmlElement(name = "user_name")
-    protected String userName;
+    @XmlElement(name = "access_token")
+    protected String accessToken;
 
     /**
-     * Gets the value of the userName property.
+     * Gets the value of the accessToken property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getUserName() {
-        return userName;
+    public String getAccessToken() {
+        return accessToken;
     }
 
     /**
-     * Sets the value of the userName property.
+     * Sets the value of the accessToken property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setUserName(String value) {
-        this.userName = value;
+    public void setAccessToken(String value) {
+        this.accessToken = value;
     }
 
 }

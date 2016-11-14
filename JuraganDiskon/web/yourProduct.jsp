@@ -8,22 +8,46 @@
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%-- start web service invocation --%>
+<%
+   Cookie cookie = null;
+   Cookie[] cookies = null;
+   String selectedCookie = "";
+   // Get an array of Cookies associated with this domain
+   cookies = request.getCookies();
+   if( cookies != null ){
+      for (int i = 0; i < cookies.length; i++){
+         cookie = cookies[i];
+         if (cookie.getName().equals("JuraganDiskon")) {
+             selectedCookie = cookie.getValue();
+         }
+      }
+  }else{
+      out.println("<h2>No cookies founds</h2>");
+  }
+%>
     <%
     String[][] products = new String[100][9];
     int productNum = 0;
-    String pageUri = request.getRequestURI();
-    pageUri = pageUri.substring(0, 15);
+    //String pageUri = request.getRequestURI();
+    //pageUri = pageUri.substring(0, 15);
+    int user_id;
+    String username = "";
     
-    
+%>
+
+    <%-- start web service invocation --%>
+    <%
     try {
 	com.me.juragandiskon.YourProduct_Service service = new com.me.juragandiskon.YourProduct_Service();
 	com.me.juragandiskon.YourProduct port = service.getYourProductPort();
 	 // TODO initialize WS operation arguments here
-	int id = 0;
+	java.lang.String accessToken = selectedCookie;
 	// TODO process result here
-	java.util.List<java.lang.String> result = port.getProducts(1);
-	productNum = Integer.parseInt(result.get(0));
-        int i = 1;
+	java.util.List<java.lang.String> result = port.getProducts(accessToken);
+	user_id = Integer.parseInt(result.get(0));
+        username = result.get(1);
+        productNum = Integer.parseInt(result.get(2));
+        int i = 3;
         int j;
         
         for (j = 0; j< productNum; j++) {
@@ -45,7 +69,6 @@
             i++;
             products[j][8] = result.get(i); //timestamp
             i++;
-            
         }
         
     } catch (Exception ex) {
@@ -80,9 +103,9 @@
         <!--HEADER BOTTOM BORDER-->
         <div class="width-100">
             <ul>
-                <h4 class="hiUsername">Hi, username</h4>
+                <h4 class="hiUsername">Hi, <% out.println(username); %></h4>
                 <div class="separator"></div>
-                <button type="button" id="logoutButton" onclick="" >logout</button>
+                <a type="button" id="logoutButton" href="http://localhost:8082/IdentityService/LogoutServlet?id=<% out.println(selectedCookie); %>">logout</a>
             </ul>
         </div>
         <h2>What are you going to sell today?</h2>
@@ -115,8 +138,11 @@
                 <div class="right-container">
                     <br><p id="totalLikes"><% out.println(products[i][5]); %> likes</p>
                     <p><% out.println(products[i][6]); %> purchases<br></p>
-                        <a type="button" id="editButton" href = "<% out.print(pageUri+"editProduct.jsp?"+"prod_id="+products[i][0]); %>"?>EDIT</a>
-                        <button type="button" id="deleteButton" name="deletingProduct" value="<% out.print(products[i][0]); %>">DELETE</button>
+                    <form name="delete" action="" method="POST" onsubmit="return deleteProductPopUp()">
+
+                        <a type="button" id="editButton" href = "<% out.print("http://localhost:8080/JuraganDiskon/editProduct.jsp?prod_id="+products[i][0]); %>"?>EDIT</a>
+                        <button type="submit" id="deleteButton" name="deletingProduct" value="<% out.print(products[i][0]); %>">DELETE</button>
+                    </form>
                 </div>
             </div>
             <br>

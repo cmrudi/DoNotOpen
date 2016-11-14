@@ -67,8 +67,8 @@ public interface Catalog {
      * @param arg0
      * @return
      *     returns java.lang.String
-     * @throws IOException_Exception
      * @throws MalformedURLException_Exception
+     * @throws IOException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")

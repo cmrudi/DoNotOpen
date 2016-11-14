@@ -24,18 +24,36 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _IOException_QNAME = new QName("http://juragandiskon.me.com/", "IOException");
+    private final static QName _MalformedURLException_QNAME = new QName("http://juragandiskon.me.com/", "MalformedURLException");
     private final static QName _DeleteProduct_QNAME = new QName("http://juragandiskon.me.com/", "deleteProduct");
     private final static QName _DeleteProductResponse_QNAME = new QName("http://juragandiskon.me.com/", "deleteProductResponse");
-    private final static QName _EditProduct_QNAME = new QName("http://juragandiskon.me.com/", "editProduct");
-    private final static QName _EditProductResponse_QNAME = new QName("http://juragandiskon.me.com/", "editProductResponse");
     private final static QName _GetProducts_QNAME = new QName("http://juragandiskon.me.com/", "getProducts");
     private final static QName _GetProductsResponse_QNAME = new QName("http://juragandiskon.me.com/", "getProductsResponse");
+    private final static QName _ValidateAccessToken_QNAME = new QName("http://juragandiskon.me.com/", "validateAccessToken");
+    private final static QName _ValidateAccessTokenResponse_QNAME = new QName("http://juragandiskon.me.com/", "validateAccessTokenResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.me.juragandiskon
      * 
      */
     public ObjectFactory() {
+    }
+
+    /**
+     * Create an instance of {@link IOException }
+     * 
+     */
+    public IOException createIOException() {
+        return new IOException();
+    }
+
+    /**
+     * Create an instance of {@link MalformedURLException }
+     * 
+     */
+    public MalformedURLException createMalformedURLException() {
+        return new MalformedURLException();
     }
 
     /**
@@ -55,22 +73,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link EditProduct }
-     * 
-     */
-    public EditProduct createEditProduct() {
-        return new EditProduct();
-    }
-
-    /**
-     * Create an instance of {@link EditProductResponse }
-     * 
-     */
-    public EditProductResponse createEditProductResponse() {
-        return new EditProductResponse();
-    }
-
-    /**
      * Create an instance of {@link GetProducts }
      * 
      */
@@ -84,6 +86,40 @@ public class ObjectFactory {
      */
     public GetProductsResponse createGetProductsResponse() {
         return new GetProductsResponse();
+    }
+
+    /**
+     * Create an instance of {@link ValidateAccessToken }
+     * 
+     */
+    public ValidateAccessToken createValidateAccessToken() {
+        return new ValidateAccessToken();
+    }
+
+    /**
+     * Create an instance of {@link ValidateAccessTokenResponse }
+     * 
+     */
+    public ValidateAccessTokenResponse createValidateAccessTokenResponse() {
+        return new ValidateAccessTokenResponse();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link IOException }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://juragandiskon.me.com/", name = "IOException")
+    public JAXBElement<IOException> createIOException(IOException value) {
+        return new JAXBElement<IOException>(_IOException_QNAME, IOException.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link MalformedURLException }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://juragandiskon.me.com/", name = "MalformedURLException")
+    public JAXBElement<MalformedURLException> createMalformedURLException(MalformedURLException value) {
+        return new JAXBElement<MalformedURLException>(_MalformedURLException_QNAME, MalformedURLException.class, null, value);
     }
 
     /**
@@ -105,24 +141,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link EditProduct }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://juragandiskon.me.com/", name = "editProduct")
-    public JAXBElement<EditProduct> createEditProduct(EditProduct value) {
-        return new JAXBElement<EditProduct>(_EditProduct_QNAME, EditProduct.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link EditProductResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://juragandiskon.me.com/", name = "editProductResponse")
-    public JAXBElement<EditProductResponse> createEditProductResponse(EditProductResponse value) {
-        return new JAXBElement<EditProductResponse>(_EditProductResponse_QNAME, EditProductResponse.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetProducts }{@code >}}
      * 
      */
@@ -138,6 +156,24 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://juragandiskon.me.com/", name = "getProductsResponse")
     public JAXBElement<GetProductsResponse> createGetProductsResponse(GetProductsResponse value) {
         return new JAXBElement<GetProductsResponse>(_GetProductsResponse_QNAME, GetProductsResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ValidateAccessToken }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://juragandiskon.me.com/", name = "validateAccessToken")
+    public JAXBElement<ValidateAccessToken> createValidateAccessToken(ValidateAccessToken value) {
+        return new JAXBElement<ValidateAccessToken>(_ValidateAccessToken_QNAME, ValidateAccessToken.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ValidateAccessTokenResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://juragandiskon.me.com/", name = "validateAccessTokenResponse")
+    public JAXBElement<ValidateAccessTokenResponse> createValidateAccessTokenResponse(ValidateAccessTokenResponse value) {
+        return new JAXBElement<ValidateAccessTokenResponse>(_ValidateAccessTokenResponse_QNAME, ValidateAccessTokenResponse.class, null, value);
     }
 
 }

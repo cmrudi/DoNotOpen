@@ -4,6 +4,24 @@
 <xsd:import namespace="http://juragandiskon.me.com/" schemaLocation="http://localhost:8081/MarketplaceWebService/YourProduct?xsd=1"/>
 </xsd:schema>
 </types>
+<message name="deleteProduct">
+<part name="parameters" element="tns:deleteProduct"/>
+</message>
+<message name="deleteProductResponse">
+<part name="parameters" element="tns:deleteProductResponse"/>
+</message>
+<message name="validateAccessToken">
+<part name="parameters" element="tns:validateAccessToken"/>
+</message>
+<message name="validateAccessTokenResponse">
+<part name="parameters" element="tns:validateAccessTokenResponse"/>
+</message>
+<message name="MalformedURLException">
+<part name="fault" element="tns:MalformedURLException"/>
+</message>
+<message name="IOException">
+<part name="fault" element="tns:IOException"/>
+</message>
 <message name="getProducts">
 <part name="parameters" element="tns:getProducts"/>
 </message>
@@ -16,28 +34,53 @@
 <message name="editProductResponse">
 <part name="parameters" element="tns:editProductResponse"/>
 </message>
-<message name="deleteProduct">
-<part name="parameters" element="tns:deleteProduct"/>
-</message>
-<message name="deleteProductResponse">
-<part name="parameters" element="tns:deleteProductResponse"/>
-</message>
 <portType name="YourProduct">
+<operation name="deleteProduct">
+<input wsam:Action="http://juragandiskon.me.com/YourProduct/deleteProductRequest" message="tns:deleteProduct"/>
+<output wsam:Action="http://juragandiskon.me.com/YourProduct/deleteProductResponse" message="tns:deleteProductResponse"/>
+</operation>
+<operation name="validateAccessToken">
+<input wsam:Action="http://juragandiskon.me.com/YourProduct/validateAccessTokenRequest" message="tns:validateAccessToken"/>
+<output wsam:Action="http://juragandiskon.me.com/YourProduct/validateAccessTokenResponse" message="tns:validateAccessTokenResponse"/>
+<fault message="tns:MalformedURLException" name="MalformedURLException" wsam:Action="http://juragandiskon.me.com/YourProduct/validateAccessToken/Fault/MalformedURLException"/>
+<fault message="tns:IOException" name="IOException" wsam:Action="http://juragandiskon.me.com/YourProduct/validateAccessToken/Fault/IOException"/>
+</operation>
 <operation name="getProducts">
 <input wsam:Action="http://juragandiskon.me.com/YourProduct/getProductsRequest" message="tns:getProducts"/>
 <output wsam:Action="http://juragandiskon.me.com/YourProduct/getProductsResponse" message="tns:getProductsResponse"/>
+<fault message="tns:IOException" name="IOException" wsam:Action="http://juragandiskon.me.com/YourProduct/getProducts/Fault/IOException"/>
 </operation>
 <operation name="editProduct">
 <input wsam:Action="http://juragandiskon.me.com/YourProduct/editProductRequest" message="tns:editProduct"/>
 <output wsam:Action="http://juragandiskon.me.com/YourProduct/editProductResponse" message="tns:editProductResponse"/>
 </operation>
-<operation name="deleteProduct">
-<input wsam:Action="http://juragandiskon.me.com/YourProduct/deleteProductRequest" message="tns:deleteProduct"/>
-<output wsam:Action="http://juragandiskon.me.com/YourProduct/deleteProductResponse" message="tns:deleteProductResponse"/>
-</operation>
 </portType>
 <binding name="YourProductPortBinding" type="tns:YourProduct">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<operation name="deleteProduct">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="validateAccessToken">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="MalformedURLException">
+<soap:fault name="MalformedURLException" use="literal"/>
+</fault>
+<fault name="IOException">
+<soap:fault name="IOException" use="literal"/>
+</fault>
+</operation>
 <operation name="getProducts">
 <soap:operation soapAction=""/>
 <input>
@@ -46,17 +89,11 @@
 <output>
 <soap:body use="literal"/>
 </output>
+<fault name="IOException">
+<soap:fault name="IOException" use="literal"/>
+</fault>
 </operation>
 <operation name="editProduct">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="deleteProduct">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

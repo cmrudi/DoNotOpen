@@ -5,15 +5,24 @@
  */
 package com.me.juragandiskon;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import javax.jws.WebParam;
 import javax.jws.WebService;
+import javax.jws.WebMethod;
+import javax.jws.WebParam;
+
 
 /**
  *
@@ -31,30 +40,42 @@ public class YourProduct {
     //  Database credentials
     static final String USER = "cmrudi";
     static final String PASS = "takengon";
+    static final String USER_AGENT = "Mozilla/5.0";
     
-    public ArrayList<String> getProducts(@WebParam(name = "user_name") String username) {
-        ArrayList<String> result;
-        result = new ArrayList();
+     @WebMethod(operationName = "getProducts")
+    public ArrayList<String> getProducts(@WebParam(name = "access_token") String access_token) throws IOException {
+        //TODO write your implementation code here:
+        String check = "slalusa";
+        String username;
+        String id;
+        String response = validateAccessToken(access_token);
+        String[] parse = response.split("-");
+        id = parse[0];
+        username = parse[1];
+        int user_id = Integer.valueOf(id);
+        ArrayList<String> result = new ArrayList<String>();
         try{
             
-            // Register JDBC driver
-            Class.forName("com.mysql.jdbc.Driver");
-            
+            Class.forName(JDBC_DRIVER);
             // Open a connection
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            
             // Execute SQL query
             Statement stmt = conn.createStatement();
             String sql;
-            //sql = "SELECT product.product_id, product.username, product.product_name, product.price, product.description, product.total_likes, product.total_purchased, product.image_address, product.timestamp FROM product, user_authentication as ua WHERE deleted = 0 AND product.username = ua.username AND ua.id = ?";
+            
             sql = "SELECT * FROM product WHERE username = ?";
             PreparedStatement pre = conn.prepareStatement(sql);
             pre.setString(1,username);
             ResultSet rs = pre.executeQuery();
             rs.last();
+            result.add(id);
+            result.add(username);
             result.add(String.valueOf(rs.getRow()));
+            
             rs.beforeFirst();
-        while (rs.next()) {
+
+            
+            while (rs.next()) {
                 result.add(rs.getString("product_id"));
                 result.add(rs.getString("username"));
                 result.add(rs.getString("product_name"));
@@ -83,19 +104,58 @@ public class YourProduct {
     /**
      * Web service operation
      */
-    public String editProduct(@WebParam(name = "id") int user_id, @WebParam(name = "product_id") int prod_id) {
+     @WebMethod(operationName = "deleteProduct")
+    public String deleteProduct(@WebParam(name = "product_id") int prod_id) {
+
         //TODO write your implementation code here:
+        try {
+            
+            // Register JDBC driver
+            Class.forName("com.mysql.jdbc.Driver");
+            // Open a connection
+            Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            
+            // Execute SQL query
+            Statement stmt = conn.createStatement();
+            String sql;
+            sql = "UPDATE product SET `deleted`=1 WHERE product_id=?";
+            PreparedStatement pre = conn.prepareStatement(sql);
+            pre.setInt(1, prod_id);
+            ResultSet rs = pre.executeQuery(); 
+            rs.last();
+            rs.beforeFirst();
+            
+        } catch(SQLException se){
+            //Handle errors for JDBC
+            se.printStackTrace();
+        }catch(Exception e){
+            //Handle errors for Class.forName
+            e.printStackTrace();
+        }finally{
+        
+        }
+
         return null;
     }
-
-    /**
-     * Web service operation
-     */
-    public String deleteProduct() {
-        //TODO write your implementation code here:
-        return null;
-    }
-
     
+     @WebMethod(operationName = "validateAccessToken")
+    public String validateAccessToken (String access_token) throws MalformedURLException, IOException {
+        String url = "http://localhost:8082/IdentityService/validateTokenServlet?access_token="+access_token;
+        URL obj = new URL(url);
+        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+        
+        con.setRequestMethod("GET");
+        con.setRequestProperty("User-Agent",USER_AGENT);
+        int responseCode = con.getResponseCode();
+        
+        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+        String inputLine;
+        StringBuffer response = new StringBuffer();
+        while ((inputLine = in.readLine()) !=null) {
+            response.append(inputLine);
+        }
+        return response.toString();
+    }    
     
 }
+

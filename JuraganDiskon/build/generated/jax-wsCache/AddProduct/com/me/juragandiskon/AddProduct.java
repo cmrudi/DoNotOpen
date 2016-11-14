@@ -27,43 +27,6 @@ public interface AddProduct {
 
     /**
      * 
-     * @param name
-     * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "hello", targetNamespace = "http://juragandiskon.me.com/", className = "com.me.juragandiskon.Hello")
-    @ResponseWrapper(localName = "helloResponse", targetNamespace = "http://juragandiskon.me.com/", className = "com.me.juragandiskon.HelloResponse")
-    @Action(input = "http://juragandiskon.me.com/AddProduct/helloRequest", output = "http://juragandiskon.me.com/AddProduct/helloResponse")
-    public String hello(
-        @WebParam(name = "name", targetNamespace = "")
-        String name);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns java.lang.String
-     * @throws MalformedURLException_Exception
-     * @throws IOException_Exception
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "validateAccessToken", targetNamespace = "http://juragandiskon.me.com/", className = "com.me.juragandiskon.ValidateAccessToken")
-    @ResponseWrapper(localName = "validateAccessTokenResponse", targetNamespace = "http://juragandiskon.me.com/", className = "com.me.juragandiskon.ValidateAccessTokenResponse")
-    @Action(input = "http://juragandiskon.me.com/AddProduct/validateAccessTokenRequest", output = "http://juragandiskon.me.com/AddProduct/validateAccessTokenResponse", fault = {
-        @FaultAction(className = MalformedURLException_Exception.class, value = "http://juragandiskon.me.com/AddProduct/validateAccessToken/Fault/MalformedURLException"),
-        @FaultAction(className = IOException_Exception.class, value = "http://juragandiskon.me.com/AddProduct/validateAccessToken/Fault/IOException")
-    })
-    public String validateAccessToken(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0)
-        throws IOException_Exception, MalformedURLException_Exception
-    ;
-
-    /**
-     * 
      * @param price
      * @param description
      * @param imageAddress
@@ -88,5 +51,42 @@ public interface AddProduct {
         String imageAddress,
         @WebParam(name = "accessToken", targetNamespace = "")
         String accessToken);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns java.lang.String
+     * @throws IOException_Exception
+     * @throws MalformedURLException_Exception
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "validateAccessToken", targetNamespace = "http://juragandiskon.me.com/", className = "com.me.juragandiskon.ValidateAccessToken")
+    @ResponseWrapper(localName = "validateAccessTokenResponse", targetNamespace = "http://juragandiskon.me.com/", className = "com.me.juragandiskon.ValidateAccessTokenResponse")
+    @Action(input = "http://juragandiskon.me.com/AddProduct/validateAccessTokenRequest", output = "http://juragandiskon.me.com/AddProduct/validateAccessTokenResponse", fault = {
+        @FaultAction(className = MalformedURLException_Exception.class, value = "http://juragandiskon.me.com/AddProduct/validateAccessToken/Fault/MalformedURLException"),
+        @FaultAction(className = IOException_Exception.class, value = "http://juragandiskon.me.com/AddProduct/validateAccessToken/Fault/IOException")
+    })
+    public String validateAccessToken(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0)
+        throws IOException_Exception, MalformedURLException_Exception
+    ;
+
+    /**
+     * 
+     * @param name
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "hello", targetNamespace = "http://juragandiskon.me.com/", className = "com.me.juragandiskon.Hello")
+    @ResponseWrapper(localName = "helloResponse", targetNamespace = "http://juragandiskon.me.com/", className = "com.me.juragandiskon.HelloResponse")
+    @Action(input = "http://juragandiskon.me.com/AddProduct/helloRequest", output = "http://juragandiskon.me.com/AddProduct/helloResponse")
+    public String hello(
+        @WebParam(name = "name", targetNamespace = "")
+        String name);
 
 }
